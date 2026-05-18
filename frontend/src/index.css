@@ -1,0 +1,146 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'Rogbold';
+  /* Make sure the filename matches exactly */
+  src: url('./assets/fonts/Rogbold-3llGM.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  /* Make sure the filename matches exactly */
+  src: url('./assets/fonts/Poppins-Regular.ttf') ('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+@theme {
+  --color-app-text: var(--text);
+  --color-app-text-h: var(--text-h);
+  --color-app-text-h-hover: var(--text-h-hover);
+  --color-app-bg: var(--bg);
+  --color-app-accent: var(--accent);
+  --color-app-border: var(--border-color);
+  --color-app-project: var(--project-btn);
+  --color-app-project-border: var(--project-border);
+  --font-rogbold: "Rogbold", "sans-serif";
+  --font-poppins: "Poppins", "sans-serif";
+}
+
+:root {
+  --text: #000000;
+  --text-h: #7e7e7e;
+  --text-h-hover: #000000;
+  --bg: #ffffff;
+  --accent: #c084fc;
+  --border-color: #dbdbdb;
+  --project-btn: #cacaca;
+  --project-border: #b4b4b4;
+}
+
+[data-theme="dark"] {
+  --text: #ffffff;
+  --text-h: #666666;
+  --text-h-hover: #ffffff;
+  --bg: #000000;
+  --accent: #c084fc;
+  --border-color: #1f1f1f;
+  --project-btn: rgb(24, 23, 23);
+  --project-border: #313131;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+.auth-track {
+  display: flex;
+  width: 200%;
+  /* Two slides wide */
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.auth-slide {
+  width: 50%;
+  /* Each slide is half the track (one full screen width) */
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateY(-10%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(1%);
+    opacity: 1;
+  }
+}
+
+.animate-slide-in {
+  animation: slide-in 0.3s ease-out;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+@keyframes swingLeft {
+  0% {
+    transform: rotate(10deg);
+  }
+
+  50% {
+    transform: rotate(16deg);
+  }
+
+  100% {
+    transform: rotate(10deg);
+  }
+}
+
+@keyframes swingMiddle {
+  0% {
+    transform: rotate(-4deg);
+  }
+
+  50% {
+    transform: rotate(4deg);
+  }
+
+  100% {
+    transform: rotate(-4deg);
+  }
+}
+
+@keyframes swingRight {
+  0% {
+    transform: rotate(-12deg);
+  }
+
+  50% {
+    transform: rotate(-18deg);
+  }
+
+  100% {
+    transform: rotate(-12deg);
+  }
+}
+
+.animate-swing-left {
+  animation: swingLeft 4s ease-in-out infinite;
+}
+
+.animate-swing-middle {
+  animation: swingMiddle 5s ease-in-out infinite;
+}
+
+.animate-swing-right {
+  animation: swingRight 4.5s ease-in-out infinite;
+}

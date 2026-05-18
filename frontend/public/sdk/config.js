@@ -1,0 +1,7 @@
+export const SDK_CONFIG = {
+    MAX_QUEUE_SIZE : 100,
+    MAX_BATCH_SIZE : 10,
+    FLUSH_INTERVAL : 5000,
+    RETRY_LIMIT : 3,
+    SDK_VERSION : '1.0.0',
+}
