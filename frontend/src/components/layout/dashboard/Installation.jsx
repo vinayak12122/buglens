@@ -21,7 +21,7 @@ const Installation = () => {
                 {/* Step 1 */}
                 <div className='bg-app-card space-y-4'>
                     <div className='flex items-center gap-3'>
-                        <FolderPlus size={20} />
+                        {/* <FolderPlus size={20} /> */}
                         <h2 className='text-xl font-semibold'>
                             Step 1 — Create a Project
                         </h2>
@@ -47,7 +47,7 @@ const Installation = () => {
                 {/* Step 2 */}
                 <div className=' bg-app-card space-y-4'>
                     <div className='flex items-center gap-3'>
-                        <Key size={20} />
+                        {/* <Key size={20} /> */}
                         <h2 className='text-xl font-semibold'>
                             Step 2 — Copy Your API Key
                         </h2>
@@ -66,7 +66,7 @@ const Installation = () => {
                 {/* Step 3 */}
                 <div className=' bg-app-card space-y-4'>
                     <div className='flex items-center gap-3'>
-                        <Terminal size={20} />
+                        {/* <Terminal size={20} /> */}
                         <h2 className='text-xl font-semibold'>
                             Step 3 — Add BugLens SDK
                         </h2>
@@ -90,7 +90,7 @@ const Installation = () => {
                 {/* Step 4 */}
                 <div className='bg-app-card space-y-4'>
                     <div className='flex items-center gap-3'>
-                        <Play size={20} />
+                        {/* <Play size={20} /> */}
                         <h2 className='text-xl font-semibold'>
                             Step 4 — Deploy Your App
                         </h2>
@@ -113,7 +113,7 @@ const Installation = () => {
                 {/* Step 5 */}
                 <div className=' bg-app-card space-y-4'>
                     <div className='flex items-center gap-3'>
-                        <CheckCircle2 size={20} />
+                        {/* <CheckCircle2 size={20} /> */}
                         <h2 className='text-xl font-semibold'>
                             Step 5 — View Errors Live
                         </h2>
@@ -136,7 +136,7 @@ const Installation = () => {
 
                 {/* Example */}
                 <div className='bg-app-/5'>
-                    <p className='text-sm text-app-text mb-3'>
+                    <p className='text-xl font-semibold text-app-text mb-3'>
                         Complete Example
                     </p>
 

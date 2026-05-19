@@ -70,7 +70,7 @@ const Header = () => {
                         />
                     </button>
                     <button className='text-app-text text-sm border border-app-border px-2 py-1 rounded' onClick={() => navigate('/auth/login')}>Log In</button>
-                    <button className='bg-white text-black text-sm px-2 py-1 rounded' onClick={() => navigate('/auth/signup')}>Sign Up</button>
+                    <button className='bg-app-text text-app-bg text-sm px-2 py-1 rounded' onClick={() => navigate('/auth/signup')}>Sign Up</button>
                 </div>
             </div>
         </header>

@@ -222,21 +222,21 @@ const UserLogs = () => {
 
               <th className='px-4 py-2 w-[15%]'>
 
-                <div className='relative flex items-center gap-1 w-fit group'>
+                <div className='relative flex items-center gap-1 w-fit group cursor-pointer'>
 
                   <CircleAlert
                     size={12}
-                    className='text-app-text-h cursor-pointer'
+                    className='text-app-text cursor-pointer'
                   />
 
                   <span>Events</span>
 
                   {/* TOOLTIP */}
                   <div
-                    className=' absolute left-0 top-6 hidden group-hover:block w-56 rounded border border-app-border bg-app-bg p-2 text-[10px] normal-case text-app-text-h shadow-lg z-50 wrap-break-word
+                    className=' absolute left-0 top-6 hidden group-hover:block w-56 rounded border border-app-border bg-app-text p-2 text-[10px] normal-case text-app-text-h shadow-lg z-50 wrap-break-word
       '
                   >
-                    Note: 1 event = 1 error occurrence on a single user device.
+                    Note<br/>1 event = 1 error occurrence on a single user device.
                   </div>
 
                 </div>

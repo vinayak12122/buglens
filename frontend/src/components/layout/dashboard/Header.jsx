@@ -28,9 +28,8 @@ const Header = () => {
             <div className="flex justify-between items-center w-full ">
                 <div className='flex gap-3 items-center p-2'>
                     <p className='text-app-text text-lg tracking-wider font-rogbold'>BugLens </p>
-                    <p className='text-app-text/10 text-lg'>/</p>
+                    <p className='text-app-text/10 text-[10px]'>/</p>
                     <div className='gap-2 flex rounded items-center '>
-                        
                         <p className='text-sm capitalize'>{user.name}</p>
                         <p className='text-orange-400 bg-orange-400/20 px-2 rounded-full text-sm'>free</p>
                     </div>

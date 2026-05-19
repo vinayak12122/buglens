@@ -31,46 +31,57 @@ const Body = ({ openMenu, setOpenMenu , activePage,setActivePage}) => {
       <div
         className={`
     fixed bg-purple-700 p-3 text-center z-100
-    transition-all duration-500 ease-in-out sm:hidden
-    ${openMenu ? 'w-full h-full rounded-none' : 'w-14 h-14 rounded-[0px_0px_50%_0px]'}
+    transition-all duration-500 ease-in-out sm:hidden overflow-hidden
+    ${openMenu ? 'w-full h-full rounded-none' : 'w-14 h-14 rounded-[0px_30%_30%_0px]'}
   `}
       >
         <button
           onClick={() => setOpenMenu(prev => !prev)}
-          className="flex justify-start items-start focus:outline-none text-white"
+          className="flex justify-start items-start focus:outline-none text-white relative top-0.5"
         >
           {openMenu ? <X /> : <Menu />}
         </button>
-        <div className={`w-full h-full flex relative top-10 justify-center transition-opacity duration-300 ${openMenu ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+
+        <div
+          className={`
+      w-full h-full flex relative top-10 justify-center
+      transition-all duration-300 delay-150
+      ${openMenu
+              ? 'opacity-100 translate-y-0'
+              : 'opacity-0 translate-y-4 pointer-events-none'
+            }
+    `}
+        >
           <MenuPage />
         </div>
       </div>
 
 
       {/* ======== BODY =========== */}
-      <section className="w-full bg-app-bg overflow-hidden flex justify-center gap-[8vw] sm:pb-5">
-
+      <section className="w-full bg-app-bg overflow-hidden flex justify-center gap-[8vw] pb-20 sm:pb-5">
         {letters.map((item, index) => (
           <div
             key={index}
             className={`relative flex flex-col items-center ${item.animation} origin-top`}
           >
+            {/* Rope */}
             <div
-              className="w-0.5 bg-app-text z-20"
-              style={{
-                height: item.ropeHeight,
-              }}
+              className="w-0.5 bg-app-text z-10"
+              style={{ height: item.ropeHeight }}
             />
 
-            <h1
-              className=" text-app-text text-[22vw] md:text-[140px] font-extralight leading-none tracking-wider mt-[-0.12em]
-            "
-            >
-              {item.letter}
-            </h1>
+            <div className="relative -mt-3.5 sm:-mt-5">
+              {/* hook pinned INTO letter */}
+              <div className="absolute left-1/2 top-1.5 sm:top-2.5 -translate-x-1/2 z-30">
+                <div className="w-2 sm:w-3 h-2 sm:h-3 rounded-full bg-app-bg border border-app-text" />
+              </div>
+
+              <h1 className="text-app-text text-[22vw] md:text-[140px] font-extralight leading-none tracking-wider">
+                {item.letter}
+              </h1>
+            </div>
           </div>
         ))}
-
       </section>
       {/* ========== HERO SECTION ========= */}
       <div className="w-full px-4 sm:px-8 lg:px-16 py-20">
@@ -96,7 +107,7 @@ const Body = ({ openMenu, setOpenMenu , activePage,setActivePage}) => {
               problems before your users report them.
             </p>
 
-            <div className="flex gap-4 mt-8">
+            <div className="flex gap-4 mt-8 mb-20 sm:mb-0">
               <button className="
           sm:px-6 sm:py-3 py-2 px-3 rounded bg-purple-700 text-white
           hover:bg-purple-700/60 transition-all duration-300
@@ -115,7 +126,7 @@ const Body = ({ openMenu, setOpenMenu , activePage,setActivePage}) => {
                 View Docs
               </button>
             </div>
-            <div className="mt-10 flex flex-col sm:flex-row gap-4 ">
+            <div className="mt-10 flex-col sm:flex-row gap-4 hidden sm:flex ">
               <div className="flex gap-2">
                 <Zap className="text-purple-700" />
                 <p className="text-gray-400">Real time logs</p>

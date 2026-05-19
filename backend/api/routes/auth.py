@@ -35,8 +35,8 @@ async def signup(user_data:UserSignup,response:Response,db:Session=Depends(get_d
         key="access_token",
         value=access_token,
         httponly=True,
-        secure=False,
-        samesite="lax",
+        secure=True,
+        samesite="none",
         max_age=60 * 24 * 7
     )
 
@@ -58,8 +58,8 @@ async def check_email(payload: EmailCheck, response: Response, db: Session = Dep
         key="pre_auth_token",
         value=pre_auth_token,
         httponly=True,
-        secure=False, 
-        samesite="lax",
+        secure=True, 
+        samesite="none",
         max_age=120 
     )
     
@@ -82,8 +82,8 @@ async def verify_password(
         key="access_token",
         value=access_token,
         httponly=True,
-        secure=False,
-        samesite="lax",
+        secure=True,
+        samesite="none",
         max_age=60 * 60 * 24 * 7
     )
 
@@ -108,8 +108,8 @@ async def login(credentials:UserLogin,response:Response,db:Session=Depends(get_d
         key="access_token",
         value=access_token,
         httponly=True,
-        secure=False,
-        samesite="lax",
+        secure=True,
+        samesite="none",
         max_age=60 * 24 * 7
     )
     return {"message":"Login successful"}
@@ -121,8 +121,8 @@ async def logout(response:Response):
         path="/",
         domain=None,
         httponly=True,
-        secure=False,
-        samesite="lax"
+        secure=True,
+        samesite="none"
     )
     return {"message":"Successfully logged out"}
 

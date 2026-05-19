@@ -390,7 +390,7 @@ const Scalability = () => {
                 </section>
 
                 {/* RECOVERY */}
-                <section className='space-y-10 pb-20'>
+                <section className='space-y-10 '>
 
                     <div className='flex items-center gap-3'>
                         <Timer

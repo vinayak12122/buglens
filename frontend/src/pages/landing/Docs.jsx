@@ -46,9 +46,9 @@ const Docs = () => {
             <div className='max-w-7xl mx-auto flex gap-10 py-2 px-8'>
 
                 {/* SIDEBAR */}
-                <aside className='hidden xl:block w-72 shrink-0'>
+                <aside className='hidden xl:block w-60 shrink-0'>
 
-                    <div className='sticky top-17 rounded border border-app-border bg-app-project/10 backdrop-blur-xl p-2'>
+                    <div className='sticky top-17 rounded bg-app-text-h/10 backdrop-blur-xl p-2 '>
 
                         {/* <p className='text-xs uppercase tracking-[0.2em] text-app-text-h mb-6'>
                             Documentation
@@ -74,6 +74,11 @@ const Docs = () => {
                     </div>
 
                 </aside>
+                {/* <div className='hidden sm:flex h-screen w-max fixed justify-center top-20 left-80'>
+                    <p
+                    className='h-[85%] w-[3px] bg-app-border'
+                    ></p>
+                </div> */}
 
                 {/* MAIN */}
                 <main className='flex-1 min-w-0 space-y-20 pt-5'>
@@ -248,7 +253,7 @@ const Docs = () => {
                     >
 
                         <div className='flex items-center gap-3'>
-                            <HelpCircle className='text-purple-700' size={24} />
+                            {/* <HelpCircle className='text-purple-700' size={24} /> */}
                             <h2 className='text-4xl font-bold'>
                                 FAQ
                             </h2>
@@ -265,10 +270,10 @@ const Docs = () => {
                                     q: "What information is collected?",
                                     a: "Error message, stack trace, browser details, page URL, and event metadata."
                                 },
-                                {
-                                    q: "Can I trigger errors manually?",
-                                    a: "Yes. Use window.BugMonitor.captureException()."
-                                },
+                                // {
+                                //     q: "Can I trigger errors manually?",
+                                //     a: "Yes. Use window.BugMonitor.captureException()."
+                                // },
                                 {
                                     q: "Where can I view errors?",
                                     a: "Inside your BugLens dashboard in real-time."

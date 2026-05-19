@@ -18,7 +18,7 @@ ALLOWED_ORIGINS = os.getenv("ALLOWED_ORIGINS", "http://localhost:5173,http://127
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=ALLOWED_ORIGINS,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -48,4 +48,4 @@ def health():
 
 
 if __name__ == "__main__":
-    uvicorn.run("main:app",port=2006,reload=True)
+    uvicorn.run("main:app", host="0.0.0.0", port=8000)
