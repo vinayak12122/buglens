@@ -131,11 +131,13 @@ const Login = () => {
 
                   <input
                     type="password"
-                    placeholder='Password'
+                    placeholder="Password"
                     autoFocus={step === 2}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className='p-3 w-full border border-app-border rounded-lg focus:border-blue-500/50 focus:outline-none bg-transparent'
+                    disabled={step !== 2}
+                    tabIndex={step === 2 ? 0 : -1}
+                    className='p-3 w-full border border-app-border rounded-lg focus:border-blue-500/50 focus:outline-none bg-transparent disabled:opacity-50 disabled:cursor-not-allowed'
                     required
                   />
                   <span className='text-app-text-h flex gap-2 p-0.5 text-xs'>
