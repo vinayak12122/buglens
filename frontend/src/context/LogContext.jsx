@@ -19,6 +19,7 @@ export const LogProvider = ({ children }) => {
 
     const toast = useToast();
     const backend_url = import.meta.env.VITE_BACKEND_URL;
+    const websocketUrl = import.meta.env.VITE_WEBSOCKET_URL;
     const socketRef = useRef(null);
 
     const syncIssues = (incoming,projectId) => {
@@ -172,7 +173,7 @@ export const LogProvider = ({ children }) => {
         }
 
         const ws = new WebSocket(
-            `ws://localhost:2006/project/${projectId}/live`
+            `${websocketUrl}/project/${projectId}/live`
         );
 
         ws.onmessage = (event) => {

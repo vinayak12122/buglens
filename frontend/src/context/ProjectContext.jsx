@@ -14,6 +14,7 @@ export const ProjectProvider = ({ children }) => {
     const socketRef = useRef(null);
 
     const backendUrl = import.meta.env.VITE_BACKEND_URL;
+    const websocketUrl = import.meta.env.VITE_WEBSOCKET_URL;
 
     const { user, authLoading } = useAuth();
     const toast = useToast();
@@ -86,7 +87,9 @@ export const ProjectProvider = ({ children }) => {
             socketRef.current.close();
         }
 
-        const ws = new WebSocket("ws://localhost:2006/project/global/live");
+        const ws = new WebSocket(
+           `${websocketUrl}/project/global/live`
+        );
 
         ws.onopen = () =>{
             // console.log("Project Stats WS Connected");
