@@ -212,7 +212,7 @@ ${urlError
                         frameworkOpen &&
 
                         <div
-                            className=' absolute top-full my-2  w-full max-h-20 overflow-y-auto border border-app-border rounded bg-app-bg shadow-2xl z-50 p-2 scrollbar-hide text-app-text
+                            className=' absolute top-full my-2  w-full max-h-40 overflow-y-auto border border-app-border rounded bg-app-bg shadow-2xl z-50 p-2 scrollbar-hide text-app-text
                             '
                         >
 
