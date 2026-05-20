@@ -179,7 +179,7 @@ ${urlError
                     }
                 </div>
 
-                <div className='flex flex-col gap-3 relative'>
+                <div className='flex flex-col gap-3 relative '>
 
                     <label className='text-app-text text-sm pl-1'>
                         Project Framework
@@ -212,7 +212,7 @@ ${urlError
                         frameworkOpen &&
 
                         <div
-                            className=' absolute top-full mt-2 w-full max-h-72 overflow-y-auto border border-app-border rounded bg-app-bg shadow-2xl z-50 p-2 scrollbar-hide text-app-text
+                            className=' absolute top-full my-2  w-full max-h-20 overflow-y-auto border border-app-border rounded bg-app-bg shadow-2xl z-50 p-2 scrollbar-hide text-app-text
                             '
                         >
 
