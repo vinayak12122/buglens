@@ -189,7 +189,7 @@ ${urlError
                     <button
                         type='button'
                         onClick={() => setFrameworkOpen(!frameworkOpen)}
-                        className=' w-full flex items-center justify-between px-2 py-1.5 border text-sm border-app-border rounded bg-transparent hover:border-zinc-700 transition-all
+                        className=' w-full flex items-center justify-between px-2 py-1.5 border text-sm border-app-border rounded bg-transparent hover:border-app-accent transition-all
                         '
                     >
 
@@ -212,7 +212,7 @@ ${urlError
                         frameworkOpen &&
 
                         <div
-                            className=' absolute top-full mt-2 w-full max-h-72 overflow-y-auto border border-app-border rounded bg-zinc-950 shadow-2xl z-50 p-2 scrollbar-hide
+                            className=' absolute top-full mt-2 w-full max-h-72 overflow-y-auto border border-app-border rounded bg-app-bg shadow-2xl z-50 p-2 scrollbar-hide text-app-text
                             '
                         >
 
@@ -233,8 +233,8 @@ ${urlError
                                             className={` w-full flex items-center justify-between p-2 rounded text-left transition-all
 
                                                 ${active
-                                                    ? "bg-zinc-800 text-white"
-                                                    : "hover:bg-zinc-900 text-zinc-300"
+                                                    ? "bg-app-text-h/10 text-app-text"
+                                                    : "hover:bg-app-text-h/10 text-app-text"
                                                 }
                                             `}
                                         >
