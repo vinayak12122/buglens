@@ -52,7 +52,7 @@ const DashboardPage = () => {
 
           <p
             className={`
-      ml-4 text-app-text text-lg tracking-wide font-semibold font-rogbold
+      ml-4 text-app-text text-2xl tracking-wide font-rogbold
       transition-opacity duration-300
       ${openMenu
                 ? "opacity-0"
