@@ -20,7 +20,7 @@ const App = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+      <div className="min-h-screen flex items-center justify-center bg-app-bg">
         <span className="text-xl font-medium text-app-text after:content-[''] after:animate-loading-dots">
           Buglens loading
         </span>
