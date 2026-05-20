@@ -235,7 +235,7 @@ const Projects = () => {
                                     </div>
 
                                     {/* ===== PUBLIC KEY ===== */}
-                                    <div className='group mt-4 p-2 rounded bg-app-border/20 border border-app-border/50 flex items-center justify-between relative'>
+                                    <div className='group mt-4 p-2 rounded bg-app-text/5 border border-app-border flex items-center justify-between relative'>
                                         {/* Content that shows ONLY on hover */}
                                         <div className='flex flex-col overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity'>
                                             <span className='text-xs font-mono truncate text-app-text/60'>{project.public_key}</span>
@@ -252,8 +252,17 @@ const Projects = () => {
                                         </button>
 
                                         {/* "API Key" text that hides on hover */}
-                                        <p className='absolute inset-0 flex items-center justify-center pointer-events-none group-hover:hidden'>
+                                        <p className='absolute inset-0 flex items-center justify-center pointer-events-none group-hover:hidden gap-4 sm:gap-0'>
                                             API Key
+                                            <button
+                                                onClick={() => handleCopy(project.public_key, 'pk', project.project_id)}
+                                                className='p-1.5 hover:bg-app-border sm:hidden'
+                                            >
+                                                {copied?.type === 'pk' && copied?.projectId === project.project_id
+                                                    ? <Check size={14} className="text-green-500" />
+                                                    : <Copy size={14} className="text-app-text-h" />
+                                                }
+                                            </button>
                                         </p>
                                     </div>
 
