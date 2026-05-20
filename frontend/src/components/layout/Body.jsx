@@ -32,7 +32,7 @@ const Body = ({ openMenu, setOpenMenu , activePage,setActivePage}) => {
         className={`
     fixed bg-purple-700 p-3 text-center z-100
     transition-all duration-500 ease-in-out sm:hidden overflow-hidden
-    ${openMenu ? 'w-full h-full rounded-none' : 'w-14 h-14 rounded-[0px_30%_30%_0px]'}
+    ${openMenu ? 'w-full h-full rounded-none' : 'w-14 h-14 rounded-[0px_0%_50%_0px]'}
   `}
       >
         <button
@@ -90,7 +90,7 @@ const Body = ({ openMenu, setOpenMenu , activePage,setActivePage}) => {
           {/* LEFT SIDE */}
           <div className="flex-1 max-w-2xl">
 
-            <div className="space-y-2">
+            <div className="space-y-2 pb-5 sm:pb-0">
               <p className="text-3xl sm:text-5xl font-bold text-app-text">
                 Monitor Bugs.
               </p>
@@ -101,7 +101,7 @@ const Body = ({ openMenu, setOpenMenu , activePage,setActivePage}) => {
               </p>
             </div>
 
-            <p className="mt-6 text-gray-400 text-sm sm:text-lg leading-relaxed max-w-xl">
+            <p className="mt-6 text-gray-400 text-sm sm:text-lg leading-relaxed max-w-xl hidden sm:block">
               Scalable realtime bug monitoring and issue tracking for modern
               applications. Capture crashes, logs and performance
               problems before your users report them.

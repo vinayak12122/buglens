@@ -18,7 +18,7 @@ const Footer = () => {
     <footer className="relative w-full bg-app-bg p overflow-hidden px-5 pt-20">
 
       {/* Footer Card */}
-      <div className="relative z-20 max-w-6xl mx-auto bg-app-bg border border-app-border rounded px-8 md:px-14 py-10 mb-10 shadow-[0_30px_80px_rgba(0,0,0,0.18)] ">
+      <div className="relative z-20 max-w-6xl mx-auto bg-transparent sm:bg-app-bg border-none sm:border border-app-border rounded px-8 md:px-14 py-10 mb-10 sm:shadow-[0_30px_80px_rgba(0,0,0,0.18)] ">
 
         {/* Top Content */}
         <div className="grid md:grid-cols-12 gap-12">
