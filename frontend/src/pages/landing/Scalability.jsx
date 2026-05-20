@@ -9,7 +9,8 @@ import {
     ShieldCheck,
     Cpu,
     Timer,
-    ArrowRight
+    ArrowRight,
+    MoveRight
 } from 'lucide-react'
 
 const Scalability = () => {
@@ -254,13 +255,11 @@ const Scalability = () => {
 
                                                 <div className='flex items-center justify-center w-6 sm:w-15 shrink-0 pt-5 sm:pt-6'>
 
-                                                    <div className='relative w-full h-px bg-app-border'>
-
-                                                        <ArrowRight
-                                                            size={14}
-                                                            className='absolute right-0 -top-2 translate-x-1/2 text-app-text-h sm:w-4 sm:h-4'
-                                                        />
-
+                                                    <div className='relative '>
+                                                        <MoveRight
+                                                            size={18}
+                                                            className='absolute right-0 -top-2 translate-x-1/2 text-app-text-h sm:w-5 sm:h-5'
+                                                        />                                                      
                                                     </div>
 
                                                 </div>
