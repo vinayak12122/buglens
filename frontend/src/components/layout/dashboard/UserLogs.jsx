@@ -149,8 +149,8 @@ const UserLogs = () => {
                 type="text"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                placeholder="Quick search..."
-                className='bg-app-bg border border-app-border rounded text-xs pl-8 pr-3 py-1.5 focus:outline-none focus:border-app-text/40 w-full sm:w-48'
+                placeholder="Search by error..."
+                className="bg-app-bg border border-app-border rounded text-xs pl-8 pr-3 py-1.5 focus:outline-none focus:ring-1 focus:ring-app-text/30 w-full sm:w-48"
               />
             </div>
 
