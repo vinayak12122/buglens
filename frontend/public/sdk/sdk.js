@@ -5,7 +5,7 @@ import { BugMonitorCore } from "./core.js";
         'script[src*="sdk.js"]'
     );
     const apiKey = script?.dataset?.apiKey;
-    const endpoint = "http://localhost:2006/ingest/collect";
+    const endpoint = "https://buglens-tnzl.onrender.com/ingest/collect";
 
     if(!apiKey){
         throw new Error("BugMonitor: API Key missing");

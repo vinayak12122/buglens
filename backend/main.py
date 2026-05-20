@@ -14,9 +14,11 @@ load_dotenv()
 
 app = FastAPI()
 
-ALLOWED_ORIGINS = os.getenv("ALLOWED_ORIGINS", "http://localhost:5173,http://127.0.0.1:5173").split(",")
+ALLOWED_ORIGINS = os.getenv("ALLOWED_ORIGINS").split(",")
 
-app.add_middleware(
+dashboard_api = FastAPI()
+
+dashboard_api.add_middleware(
     CORSMiddleware,
     allow_origins=ALLOWED_ORIGINS,
     allow_credentials=True,
@@ -24,13 +26,27 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+ingest_api = FastAPI()
+
+ingest_api.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["POST"],
+    allow_headers=["*"],
+)
+
+dashboard_api.include_router(auth_router)
+dashboard_api.include_router(project_router)
+
+ingest_api.include_router(ingest_router)
+
+app.mount('/api',dashboard_api)
+app.mount('/ingest',ingest_api)
+
 @app.on_event("startup")
 async def background_worker():
     asyncio.create_task(flusher())
-
-app.include_router(auth_router)
-app.include_router(ingest_router)
-app.include_router(project_router)
 
 @app.get("/")
 def read_root():

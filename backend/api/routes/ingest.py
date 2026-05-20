@@ -10,7 +10,7 @@ from core.buffer import log_queue,processing_queue,MAX_BUFFER
 
 logger = logging.getLogger(__name__)
 
-router = APIRouter(prefix='/ingest')
+router = APIRouter()
 
 @router.post("/collect",status_code=status.HTTP_202_ACCEPTED)
 async def collect_event(
