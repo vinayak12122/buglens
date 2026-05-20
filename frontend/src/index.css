@@ -144,3 +144,30 @@ body {
 .animate-swing-right {
   animation: swingRight 4.5s ease-in-out infinite;
 }
+
+@theme {
+  /* Define the utility name and link it to the keyframes */
+  --animate-loading-dots: dots 1.5s steps(1) infinite;
+
+  /* Define the keyframes behavior */
+  @keyframes dots {
+
+    0%,
+    20% {
+      content: "";
+    }
+
+    40% {
+      content: ".";
+    }
+
+    60% {
+      content: "..";
+    }
+
+    80%,
+    100% {
+      content: "...";
+    }
+  }
+}
