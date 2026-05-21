@@ -88,14 +88,13 @@ const Body = ({ openMenu, setOpenMenu , activePage,setActivePage}) => {
         <div className=" flex flex-col lg:flex-row items-center justify-between gap-16">
 
           {/* LEFT SIDE */}
-          <div className="flex-1 max-w-2xl">
-
-            <div className="space-y-2 pb-5 sm:pb-0">
-              <p className="text-3xl sm:text-5xl font-bold text-app-text ">
+          <div className="flex-1 max-w-2xl px-4 sm:px-0">
+            <div className="space-y-1 pb-3 sm:pb-0">
+              <p className="text-3xl font-extrabold tracking-tight text-app-text text-center sm:text-start sm:text-5xl">
                 Monitor Bugs.
               </p>
 
-              <p className="text-3xl sm:text-5xl font-bold text-app-text">
+              <p className="text-3xl font-extrabold tracking-tight text-app-text text-center sm:text-start sm:text-5xl">
                 Fix Issues.
                 <span className="text-purple-700"> Ship Better.</span>
               </p>
@@ -106,26 +105,26 @@ const Body = ({ openMenu, setOpenMenu , activePage,setActivePage}) => {
               applications. Capture crashes, logs and performance
               problems before your users report them.
             </p>
-            <p className=" text-gray-400 text-sm sm:text-lg leading-relaxed max-w-xl sm:hidden">
-              Scalable, real-time app monitoring that catches crashes and performance issues before users notice
+            <p className="text-app-text/60 text-base leading-relaxed max-w-xl text-center sm:text-start pt-4 sm:hidden">
+              Scalable app monitoring to track issues and performance in real time.
             </p>
 
-            <div className="flex gap-4 mt-8 mb-20 sm:mb-0 flex-col sm:flex-row">
+            <div className="flex gap-3 mt-6 mb-12 sm:mt-8 sm:mb-0 flex-col sm:flex-row"> {/* Adjusted margins and gaps */}
               <button className="
-          sm:px-6 sm:py-3 py-2 px-3 rounded bg-purple-700 text-white
-          hover:bg-purple-700/60 transition-all duration-300
-        "
+        w-full sm:w-auto sm:px-6 sm:py-3 py-3 px-4 rounded font-medium bg-purple-700 text-white
+        hover:bg-purple-700/60 transition-all duration-300 text-sm sm:text-base
+      "
                 onClick={() => navigate('/auth/login')}
               >
                 Start Monitoring
               </button>
 
               <button className="
-          sm:px-6 sm:py-3 py-2 px-3 rounded-lg border border-app-border
-          text-app-text hover:bg-white/5 transition-all duration-300
-        "
-        onClick={()=>navigate('/page/docs')}
-        >
+        w-full sm:w-auto sm:px-6 sm:py-3 py-3 px-4 rounded-lg border border-app-border
+        text-app-text hover:bg-white/5 transition-all duration-300 text-sm sm:text-base
+      "
+                onClick={() => navigate('/page/docs')}
+              >
                 View Docs
               </button>
             </div>

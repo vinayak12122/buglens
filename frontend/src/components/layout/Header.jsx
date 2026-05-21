@@ -50,7 +50,7 @@ const Header = () => {
                 <div className='flex items-center sm:gap-5 gap-2'>
                     <button
                         onClick={toggleTheme}
-                        className="relative flex items-center justify-between px-1 py-1 gap-1 rounded-full border border-app-text/10 transition-all duration-500"
+                        className="relative items-center justify-between px-1 py-1 gap-1 rounded-full border border-app-text/10 transition-all duration-500 hidden sm:flex"
                     >
                         <SunMedium
                             className={`transition-all duration-500 h-6 w-max p-1
