@@ -58,7 +58,7 @@ const Body = ({ openMenu, setOpenMenu , activePage,setActivePage}) => {
 
 
       {/* ======== BODY =========== */}
-      <section className="w-full bg-app-bg overflow-hidden flex justify-center gap-[8vw] pb-20 sm:pb-5">
+      <section className="w-full bg-app-bg overflow-hidden flex justify-center gap-[3vw] sm:gap-[8vw] pb-20 sm:pb-5">
         {letters.map((item, index) => (
           <div
             key={index}
@@ -84,14 +84,14 @@ const Body = ({ openMenu, setOpenMenu , activePage,setActivePage}) => {
         ))}
       </section>
       {/* ========== HERO SECTION ========= */}
-      <div className="w-full px-4 sm:px-8 lg:px-16 py-20">
+      <div className="w-full px-4 sm:px-8 lg:px-16 py-0 sm:py-20">
         <div className=" flex flex-col lg:flex-row items-center justify-between gap-16">
 
           {/* LEFT SIDE */}
           <div className="flex-1 max-w-2xl">
 
             <div className="space-y-2 pb-5 sm:pb-0">
-              <p className="text-3xl sm:text-5xl font-bold text-app-text">
+              <p className="text-3xl sm:text-5xl font-bold text-app-text ">
                 Monitor Bugs.
               </p>
 
@@ -106,8 +106,11 @@ const Body = ({ openMenu, setOpenMenu , activePage,setActivePage}) => {
               applications. Capture crashes, logs and performance
               problems before your users report them.
             </p>
+            <p className=" text-gray-400 text-sm sm:text-lg leading-relaxed max-w-xl sm:hidden">
+              Scalable, real-time app monitoring that catches crashes and performance issues before users notice
+            </p>
 
-            <div className="flex gap-4 mt-8 mb-20 sm:mb-0">
+            <div className="flex gap-4 mt-8 mb-20 sm:mb-0 flex-col sm:flex-row">
               <button className="
           sm:px-6 sm:py-3 py-2 px-3 rounded bg-purple-700 text-white
           hover:bg-purple-700/60 transition-all duration-300
