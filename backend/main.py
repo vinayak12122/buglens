@@ -56,7 +56,7 @@ def read_root():
         "documentation": "/docs"
     }
 
-@app.get('/health')
+@app.api_route('/health', methods=["GET", "HEAD"])
 def health():
     return {
         "status": "alive"
