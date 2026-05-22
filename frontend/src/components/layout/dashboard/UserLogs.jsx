@@ -417,7 +417,7 @@ const UserLogs = () => {
                                 </span>
                               ))}
                             </div>
-                            <span className={`text-[9px] opacity-60 ${openDropdownId ? "rotate-180":"rotate-0"} duration-300`}><ChevronDown size={12}/></span>
+                            <span className={`text-[9px] opacity-60 ${openDropdownId === issue.id ? "rotate-180":"rotate-0"} duration-300`}><ChevronDown size={12}/></span>
                           </button>
 
                           {openDropdownId === issue.id && (
