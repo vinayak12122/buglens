@@ -36,9 +36,9 @@ const UserLogs = () => {
   // const dropdownRef = useRef(null);
 
   const options = [
-    { value: 'unresolved', label: 'unresolved', color: 'bg-red-500' },
-    { value: 'resolved', label: 'resolved', color: 'bg-green-500' },
-    { value: 'ignored', label: 'ignored', color: 'bg-gray-500' }
+    { value: 'unresolved', label: 'unresolved', shortLabel: 'ur', color: 'bg-red-500' },
+    { value: 'resolved', label: 'resolved', shortLabel: 're', color: 'bg-green-500' },
+    { value: 'ignored', label: 'ignored', shortLabel: 'ig', color: 'bg-gray-500' }
   ];
 
   const filteredIssues = useMemo(() => {
@@ -408,17 +408,25 @@ const UserLogs = () => {
                             onClick={() => setOpenDropdownId(prev => prev === issue.id ? null : issue.id)}
                             className='bg-app-bg border border-app-border rounded px-2 py-1 text-[11px] outline-none status  flex justify-between items-center cursor-pointer select-none text-app-text gap-1'
                           >
-                            <span className="capitalize">{issue.status}</span>
+                            <div className="flex-1 text-left">
+                              {options.map((opt) => opt.value === issue.status && (
+                                <span key={opt.value}>
+                                  <span className="sm:hidden capitalize">{opt.shortLabel}</span>
+                                  {/* Small Screen and Up: Full Text */}
+                                  <span className="hidden sm:inline capitalize">{opt.label}</span>
+                                </span>
+                              ))}
+                            </div>
                             <span className={`text-[9px] opacity-60 ${openDropdownId ? "rotate-180":"rotate-0"} duration-300`}><ChevronDown size={12}/></span>
                           </button>
 
                           {openDropdownId === issue.id && (
-                            <ul className="absolute left-0 mt-1  bg-app-bg border border-app-border rounded shadow-lg z-50 overflow-hidden text-[11px] text-white ">
+                            <ul className="absolute left-0 mt-1  bg-app-bg border border-app-border rounded shadow-lg z-50 overflow-hidden text-[11px] text-app-text ">
                               {options.map((option) => (
                                 <li
                                   key={option.value}
                                   onClick={() => handleSelect(issue.id,option.value)}
-                                  className={`px-2 py-1.5 cursor-pointer flex items-center gap-2 hover:bg-neutral-800 transition-colors ${issue.status === option.value ? 'bg-neutral-700/50 font-semibold' : ''
+                                  className={`px-2 py-1.5 cursor-pointer flex items-center gap-2 hover:bg-app-text/10 transition-colors ${issue.status === option.value ? 'bg-app-text/10 text-app-text' : ''
                                     }`}
                                 >
                                   <span className={`w-2 h-2 rounded-full ${option.color}`} />
