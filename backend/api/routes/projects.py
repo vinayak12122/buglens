@@ -9,7 +9,7 @@ from database.connection import get_db
 from database.models import Project,Issue,Log
 from api.utils.dependency import get_current_user
 from api.utils.project_security import generate_public_key
-from api.schemas.validator import ProjectCreate
+from api.schemas.validator import ProjectCreate,IssueStatusUpdate
 from api.utils.security import JWT_SEC,JWT_ALGO
 
 
@@ -313,3 +313,35 @@ async def delete_project(
     }
 
 
+@router.patch('/{project_id}/issues/{issue_id}/status')
+async def update_issue_status(project_id:str,issue_id:str,data:IssueStatusUpdate,db:Session=Depends(get_db),current_user=Depends(get_current_user)):
+
+    issue = db.query(Issue).filter(Issue.id == issue_id,Issue.project_id == project_id).first()
+
+    if not issue:
+        raise HTTPException(
+            status_code=404,
+            detail="Issue not found"
+        )
+    
+    new_status = data.status
+
+    if issue.status == new_status:
+        return {
+            "message": "Status already updated",
+            "status": issue.status
+        }
+    
+    issue.status = new_status
+    db.commit()
+
+    await manager.broadcast(project_id,{
+         "type": "issue_status_updated",
+            "issue_id": str(issue.id),
+            "status": new_status
+    })
+
+
+    return {
+        "message": "Issue status updated successfully"
+    }

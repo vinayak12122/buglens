@@ -20,7 +20,9 @@ export const LogProvider = ({ children }) => {
     const toast = useToast();
     const backend_url = import.meta.env.VITE_BACKEND_URL;
     const websocketUrl = import.meta.env.VITE_WEBSOCKET_URL;
+
     const socketRef = useRef(null);
+    const statusTimeoutRef = useRef({}); 
 
     const syncIssues = (incoming,projectId) => {
         setIssues(prev => {
@@ -202,10 +204,70 @@ export const LogProvider = ({ children }) => {
                     )
                 );
             }
+
+            if (data.type === "issue_status_updated"){
+                setIssues(prev =>
+                    prev.map(issue =>
+                        issue.id === data.issue_id
+                            ? {
+                                ...issue,
+                                status: data.status
+                            }
+                            : issue
+                    )
+                );
+            }
         };
 
         socketRef.current = ws;
     };
+
+    const updateIssueStatus = (projectId,issueId,status) =>{
+        setIssues(prev => {
+            const updated = prev.map(issue => issue.id  === issueId ? {...issue,status}:issue);
+
+            setCache(`issues_${projectId}`,updated);
+
+            return updated;
+        });
+
+        if(statusTimeoutRef.current[issueId]){
+            clearTimeout(statusTimeoutRef.current[issueId]);
+        }
+
+        statusTimeoutRef.current[issueId] = setTimeout(async ()=>{
+            try {
+                const fullProjectId = `proj_${projectId}`;
+
+                const res = await fetch(`${backend_url}/project/${fullProjectId}/issues/${issueId}/status`, {
+                    method: "PATCH",
+                    credentials: "include",
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+                    body: JSON.stringify({
+                        status
+                    })
+                })
+
+                const data = await res.json();
+
+                if(!res.ok){
+                    toast(
+                        data.detail ||
+                        "Failed to update status",
+                        "error"
+                    );
+                }
+            } catch (error) {
+                toast(
+                    "Failed to sync issue status",
+                    "error"
+                );
+            }
+        },3000);
+    }
 
     const disconnectLiveSocket = () => {
         if (socketRef.current) {
@@ -224,7 +286,8 @@ export const LogProvider = ({ children }) => {
                 logLoading,
                 fetchLogs,
                 connectionLiveSocket,
-                disconnectLiveSocket
+                disconnectLiveSocket,
+                updateIssueStatus
             }}
         >
             {children}

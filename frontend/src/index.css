@@ -171,3 +171,7 @@ body {
     }
   }
 }
+
+.status option{
+  border-radius: 4px;
+}

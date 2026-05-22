@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import {
@@ -9,7 +9,8 @@ import {
   ExternalLink,
   ArrowLeft,
   CircleAlert,
-  RotateCw
+  RotateCw,
+  ChevronDown
 } from 'lucide-react';
 import { useLog } from '../../../context/LogContext';
 
@@ -22,13 +23,23 @@ const UserLogs = () => {
   const {
     issues,
     fetchIssues,
-    issuesLoading
+    issuesLoading,
+    updateIssueStatus
   } = useLog();
 
   const [search, setSearch] = useState('');
   const [sortBy, setSortBy] = useState("last_seen");
   const [filterOpen, setFilterOpen] = useState(false);
   const [reload, setReload] = useState(false);
+  const [openDropdownId, setOpenDropdownId] = useState(null);
+
+  // const dropdownRef = useRef(null);
+
+  const options = [
+    { value: 'unresolved', label: 'unresolved', color: 'bg-red-500' },
+    { value: 'resolved', label: 'resolved', color: 'bg-green-500' },
+    { value: 'ignored', label: 'ignored', color: 'bg-gray-500' }
+  ];
 
   const filteredIssues = useMemo(() => {
     let updated = [...issues]
@@ -64,6 +75,13 @@ const UserLogs = () => {
     fetchIssues(projectId);
 
   }, [projectId]);
+
+  const handleSelect = (issueId,status) => {
+    updateIssueStatus(projectId,issueId,status);
+    setOpenDropdownId(null);
+  }
+
+  // console.log(issues)
 
   const severityMap = {
     error: "text-red-500 bg-red-500/5 border-red-500/20",
@@ -344,8 +362,6 @@ const UserLogs = () => {
                       }
                       className='hover:bg-app-accent/5 cursor-pointer group transition-colors'
                     >
-
-                      {/* MESSAGE */}
                       <td className='px-4 py-3 overflow-hidden'>
 
                         <div className='flex flex-col'>
@@ -384,27 +400,39 @@ const UserLogs = () => {
                       </td>
 
                       {/* STATUS */}
-                      <td className='px-4 py-2'>
+                      <td className='px-4 py-2' onClick={(e) => e.stopPropagation()}>
+                        <div className="relative inline-block text-left">
 
-                        <div className='flex items-center gap-1.5'>
+                          <button
+                            type="button"
+                            onClick={() => setOpenDropdownId(prev => prev === issue.id ? null : issue.id)}
+                            className='bg-app-bg border border-app-border rounded px-2 py-1 text-[11px] outline-none status  flex justify-between items-center cursor-pointer select-none text-app-text gap-1'
+                          >
+                            <span className="capitalize">{issue.status}</span>
+                            <span className={`text-[9px] opacity-60 ${openDropdownId ? "rotate-180":"rotate-0"} duration-300`}><ChevronDown size={12}/></span>
+                          </button>
 
-                          <div
-                            className={`w-1.5 h-1.5 rounded-full ${issue.status === 'unresolved'
-                              ? 'bg-red-500'
-                              : 'bg-green-500'
-                              }`}
-                          />
-
-                          <span className='text-[11px] font-medium'>
-                            {issue.status}
-                          </span>
+                          {openDropdownId === issue.id && (
+                            <ul className="absolute left-0 mt-1  bg-app-bg border border-app-border rounded shadow-lg z-50 overflow-hidden text-[11px] text-white ">
+                              {options.map((option) => (
+                                <li
+                                  key={option.value}
+                                  onClick={() => handleSelect(issue.id,option.value)}
+                                  className={`px-2 py-1.5 cursor-pointer flex items-center gap-2 hover:bg-neutral-800 transition-colors ${issue.status === option.value ? 'bg-neutral-700/50 font-semibold' : ''
+                                    }`}
+                                >
+                                  <span className={`w-2 h-2 rounded-full ${option.color}`} />
+                                  <span className="capitalize">{option.label}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          )}
 
                         </div>
-
                       </td>
 
                       {/* COUNT */}
-                      <td className='px-4 py-2'>
+                      <td className='px-4 py-2 text-center'>
 
                         <span className='text-xs font-mono bg-app-border/20 px-1.5 py-0.5 rounded'>
                           {issue.count}

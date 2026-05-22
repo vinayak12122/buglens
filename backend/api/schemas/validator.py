@@ -1,5 +1,5 @@
 from pydantic import BaseModel,EmailStr,Field,HttpUrl
-from typing import Optional,Dict,Any
+from typing import Optional,Dict,Any,Literal
 from uuid import UUID
 from datetime import datetime
 
@@ -88,3 +88,13 @@ class LogOut(BaseSchema):
     stack: Optional[str] = None
     payload: Optional[Dict[str, Any]] = None
     created_at: datetime
+
+# =======================================================================
+# =======================================================================
+
+class IssueStatusUpdate(BaseModel):
+    status:Literal[
+        "resolved",
+        "unresolved",
+        "ignored"
+    ]
