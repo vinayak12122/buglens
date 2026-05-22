@@ -15,7 +15,7 @@ const DashboardPage = () => {
 
   const { user } = useAuth();
 
-  const getLetter = (name) =>{
+  const getLetter = (name) => {
     if (!name) return "?";
     const nameParts = name.trim().split(/\s+/)
     if (nameParts.length === 1) {
@@ -104,14 +104,16 @@ const DashboardPage = () => {
               setSelected={setSelected}
             />
           </div>
-          <div className='pb-5 w-full flex justify-center items-center flex-col'>
-            <div className='gap-3 flex rounded items-center'>
-              <div className='bg-app-text text-app-bg font-semibold rounded-full p flex items-center justify-center text-lg p-2 tracking-wider border border-purple-500/30 dynamic-avatar '>
-                {getLetter(user?.name)}
+          <div className='pb-10'>
+            <div className='flex w-full px-8 items-center gap-5'>
+              <div className='flex items-center justify-center text-lg p-2 gap-2'>
+                <div className='bg-app-text text-app-bg font-semibold rounded-full p flex items-center justify-center text-lg p-2 tracking-wider border border-purple-500/30 dynamic-avatar '>
+                  {getLetter(user?.name)}
+                </div>
+                <p className='text-xl capitalize'>{user?.name || "Guest User"}</p>
               </div>
-              <p className='text-xl capitalize'>{user?.name || "Guest User"}</p>
+              <p className='text-orange-400 bg-orange-400/20 px-3 py-1 rounded-full text-sm'>Free</p>
             </div>
-            <p className='text-app-text-h text-[12px] w-full flex justify-center items-center mt-1'>Free tier</p>
           </div>
         </div>
 
