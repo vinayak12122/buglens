@@ -147,7 +147,7 @@ const Installation = () => {
         {/* Designing Part */}
     </div>
     <script
-      src="http://localhost:5173/sdk/sdk.js"
+      src="https://buglens-two.vercel.app/sdk/sdk.js"
       data-api-key="bg_live_xxxxxxxxx"
     >
     </script>
