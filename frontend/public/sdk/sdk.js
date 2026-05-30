@@ -27,4 +27,5 @@ import { BugMonitorCore } from "./core.js";
 
     window.BugMonitor = sdk;
 
+    console.log("SDK VERSION TEST 12345");
 })();
