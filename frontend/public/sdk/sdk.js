@@ -1,23 +1,28 @@
+console.log("SDK FILE LOADED");
 import { BugMonitorCore } from "./core.js";
+
+console.log("THEN LOADING");
 
 (() => {
 
+    console.log("IIFE STARTED");
+
     const scripts = [...document.scripts];
+
+    console.log("ALL SCRIPTS", scripts);
 
     const script = scripts.find(
         s => s.dataset.apiKey
     );
 
+    console.log("FOUND SCRIPT", script);
+
     const apiKey = script?.dataset?.apiKey;
+
+    console.log("API KEY", apiKey);
 
     const endpoint =
         "https://buglens-tnzl.onrender.com/ingest/collect";
-
-    if (!apiKey) {
-        throw new Error(
-            "BugMonitor: API Key missing"
-        );
-    }
 
     const sdk = new BugMonitorCore({
         apiKey,
@@ -25,7 +30,10 @@ import { BugMonitorCore } from "./core.js";
         environment: "production",
     });
 
+    console.log("SDK CREATED", sdk);
+
     window.BugMonitor = sdk;
 
-    console.log("SDK VERSION TEST 123456");
+    console.log("WINDOW ASSIGNED");
+
 })();
