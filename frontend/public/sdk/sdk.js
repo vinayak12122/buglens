@@ -4,7 +4,13 @@ import { BugMonitorCore } from "./core.js";
 
 (() => {
 
-    const apiKey = window.__BUGLENS_API_KEY__;
+    const scripts = [...document.scripts];
+
+    const script = scripts.find(
+        s => s.dataset.apiKey
+    );
+
+    const apiKey = script?.dataset?.apiKey;
 
     const endpoint =
         "https://buglens-tnzl.onrender.com/ingest/collect";
