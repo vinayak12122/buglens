@@ -80,6 +80,7 @@ const Installation = () => {
 
                     <pre className='text-sm overflow-x-auto text-green-400 bg-app-text/10 p-4 rounded border border-app-border'>
                         {`<script
+                        type="module"
     src="https://buglens-two.vercel.app/sdk/sdk.js"
     data-api-key="YOUR_API_KEY"
 >
