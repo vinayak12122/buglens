@@ -1,0 +1,205 @@
+{
+    "product": {
+        "summary": "General information about BugLens including platform overview, architecture, scalability characteristics, and current limitations.",
+        "documents": {
+            "overview": {
+                "summary": "High-level overview of BugLens as a realtime error monitoring and debugging platform.",
+                "path": "product/overview.md"
+            },
+            "architecture": {
+                "summary": "Explains the overall BugLens architecture from SDK capture to dashboard visualization.",
+                "path": "product/architecture.md"
+            },
+            "scalability": {
+                "summary": "Describes frontend and backend scalability mechanisms used throughout the platform.",
+                "path": "product/scalability.md"
+            },
+            "limitations": {
+                "summary": "Documents current platform limitations and potential future improvements.",
+                "path": "product/limitations.md"
+            }
+        }
+    },
+    "frontend": {
+        "summary": "Frontend architecture built with React and Vite. Covers routing, caching, websocket updates, projects, issues, logs, and reusable UI components.",
+        "documents": {
+            "architecture": {
+                "summary": "Explains the React and Vite based frontend architecture and component-driven design.",
+                "path": "frontend/architecture.md"
+            },
+            "routing": {
+                "summary": "Describes client-side routing, protected routes, and navigation structure.",
+                "path": "frontend/routing.md"
+            },
+            "caching": {
+                "summary": "Map-based in-memory caching used to reduce repeated API requests and improve navigation speed.",
+                "path": "frontend/caching.md"
+            },
+            "websocket": {
+                "summary": "Realtime dashboard updates delivered through websocket connections instead of polling.",
+                "path": "frontend/websocket.md"
+            },
+            "projects": {
+                "summary": "Project management interface including project dashboards, settings, and API key management.",
+                "path": "frontend/projects.md"
+            },
+            "issues": {
+                "summary": "Frontend issue management interface used to inspect grouped application errors.",
+                "path": "frontend/issues.md"
+            },
+            "logs": {
+                "summary": "Log inspection interface used to investigate individual event records.",
+                "path": "frontend/logs.md"
+            },
+            "ui_components": {
+                "summary": "Reusable UI components including tables, cards, forms, loaders, and modals.",
+                "path": "frontend/ui_components.md"
+            }
+        }
+    },
+    "backend": {
+        "summary": "Backend architecture built on FastAPI. Covers ingestion, queues, workers, fingerprinting, authentication, scalability, and realtime broadcasting.",
+        "documents": {
+            "architecture": {
+                "summary": "Explains the complete backend event-processing architecture.",
+                "path": "backend/architecture.md"
+            },
+            "ingestion": {
+                "summary": "Receives SDK events, validates API keys, generates metadata, and inserts events into the queue.",
+                "path": "backend/ingestion.md"
+            },
+            "fingerprinting": {
+                "summary": "Creates deterministic fingerprints used to identify duplicate errors and group events into issues.",
+                "path": "backend/fingerprinting.md"
+            },
+            "workers": {
+                "summary": "Background processing system responsible for issue creation, occurrence updates, and log storage.",
+                "path": "backend/workers.md"
+            },
+            "queues": {
+                "summary": "Disk-backed queue system that buffers incoming events before worker processing.",
+                "path": "backend/queues.md"
+            },
+            "websocket": {
+                "summary": "Realtime broadcasting system that pushes updates to connected dashboard clients.",
+                "path": "backend/websocket.md"
+            },
+            "authentication": {
+                "summary": "Project validation and API key authentication system.",
+                "path": "backend/authentication.md"
+            },
+            "scalability": {
+                "summary": "Backend scalability mechanisms including queues, workers, and asynchronous processing.",
+                "path": "backend/scalability.md"
+            }
+        }
+    },
+    "sdk": {
+        "summary": "Browser SDK responsible for initialization, error capture, batching, transport, breadcrumbs, and project integration.",
+        "documents": {
+            "overview": {
+                "summary": "Overview of the BugLens browser SDK and its role in error monitoring.",
+                "path": "sdk/overview.md"
+            },
+            "initialization": {
+                "summary": "SDK setup through a script tag using a project-specific API key.",
+                "path": "sdk/initialization.md"
+            },
+            "capture": {
+                "summary": "Automatic browser error collection and diagnostic event generation.",
+                "path": "sdk/capture.md"
+            },
+            "batching": {
+                "summary": "Event batching mechanism used to reduce network overhead.",
+                "path": "sdk/batching.md"
+            },
+            "transport": {
+                "summary": "Event transmission from browser applications to the BugLens backend.",
+                "path": "sdk/transport.md"
+            },
+            "breadcrumbs": {
+                "summary": "Tracks user clicks and navigation history to provide additional error context.",
+                "path": "sdk/breadcrumbs.md"
+            },
+            "configuration": {
+                "summary": "Current SDK configuration options and integration settings.",
+                "path": "sdk/configuration.md"
+            }
+        }
+    },
+    "issues": {
+        "summary": "Issue management system covering issue lifecycle, fingerprinting, grouping, occurrence tracking, and resolution workflows.",
+        "documents": {
+            "issue_lifecycle": {
+                "summary": "Explains how issues are created, updated, and managed throughout their lifecycle.",
+                "path": "issues/issue_lifecycle.md"
+            },
+            "fingerprinting": {
+                "summary": "Issue fingerprinting system used to identify duplicate application errors.",
+                "path": "issues/fingerprinting.md"
+            },
+            "grouping": {
+                "summary": "Groups related error events into a single issue using fingerprint matching.",
+                "path": "issues/grouping.md"
+            },
+            "occurrence_tracking": {
+                "summary": "Tracks how many times an issue has appeared and when it occurred.",
+                "path": "issues/occurrence_tracking.md"
+            },
+            "resolution_flow": {
+                "summary": "Describes the workflow developers follow to investigate and resolve issues.",
+                "path": "issues/resolution_flow.md"
+            }
+        }
+    },
+    "logs": {
+        "summary": "Log lifecycle including ingestion, processing, storage, queue flow, and realtime updates.",
+        "documents": {
+            "ingestion": {
+                "summary": "Explains how error events enter the BugLens platform.",
+                "path": "logs/ingestion.md"
+            },
+            "processing": {
+                "summary": "Describes asynchronous event processing performed by backend workers.",
+                "path": "logs/processing.md"
+            },
+            "storage": {
+                "summary": "Stores processed event logs in PostgreSQL for investigation and debugging.",
+                "path": "logs/storage.md"
+            },
+            "queue_flow": {
+                "summary": "Documents the complete queue-driven event processing flow.",
+                "path": "logs/queue_flow.md"
+            },
+            "realtime_updates": {
+                "summary": "Explains how processed logs are delivered to dashboards in realtime.",
+                "path": "logs/realtime_updates.md"
+            }
+        }
+    },
+    "docs": {
+        "summary": "User documentation including installation, API keys, troubleshooting, deployment, and frequently asked questions.",
+        "documents": {
+            "faq": {
+                "summary": "Frequently asked questions about BugLens usage and behavior.",
+                "path": "docs/faq.md"
+            },
+            "installation": {
+                "summary": "Instructions for integrating the BugLens SDK into an application.",
+                "path": "docs/installation.md"
+            },
+            "api_keys": {
+                "summary": "Explains API key usage, validation, and project identification.",
+                "path": "docs/api_keys.md"
+            },
+            "troubleshooting": {
+                "summary": "Common problems, diagnostics, and debugging guidance.",
+                "path": "docs/troubleshooting.md"
+            },
+            "deployment": {
+                "summary": "Deployment process and post-deployment verification steps.",
+                "path": "docs/deployment.md"
+            }
+        }
+    }
+}

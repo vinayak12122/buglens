@@ -20,13 +20,13 @@ export const ToastProvider = ({children}) => {
         // Light mode (default) vs Dark mode (overrides)
         success: "bg-white text-gray-900 border-gray-300 dark:bg-black dark:text-white dark:border-gray-800",
 
-        error: "bg-red-500/20 text-red-500 border-red-200 dark:bg-red-900/30 dark:text-red-400 dark:border-red-800"
+        error: "bg-red-400/60 text-red-500 border-red-200 dark:bg-red-900 dark:text-red-400 dark:border-red-800"
     };
 
   return (
     <ToastContext.Provider value={{toast}}>
         {children}
-          <div className="fixed top-5 left-1/2 -translate-x-1/2 flex flex-col gap-2 z-50 w-full max-w-[90%] sm:max-w-sm px-4">
+          <div className="fixed top-5 left-1/2 -translate-x-1/2 flex flex-col gap-2 z-500 w-full max-w-[90%] sm:max-w-sm px-4">
               {toasts.map((t) => (
                   <div
                       key={t.id}

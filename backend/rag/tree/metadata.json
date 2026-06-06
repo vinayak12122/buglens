@@ -1,0 +1,385 @@
+{
+    "product.overview": {
+        "keywords": [
+            "buglens",
+            "overview",
+            "platform",
+            "monitoring",
+            "error tracking",
+            "debugging",
+            "create",
+            "created",
+            "owner",
+            "build",
+            "builded"
+        ]
+    },
+    "product.architecture": {
+        "keywords": [
+            "architecture",
+            "workflow",
+            "sdk",
+            "backend",
+            "dashboard",
+            "system design"
+        ]
+    },
+    "product.scalability": {
+        "keywords": [
+            "scalability",
+            "performance",
+            "optimization",
+            "growth",
+            "traffic",
+            "large scale"
+        ]
+    },
+    "product.limitations": {
+        "keywords": [
+            "limitations",
+            "future",
+            "roadmap",
+            "missing features",
+            "constraints"
+        ]
+    },
+    "frontend.architecture": {
+        "keywords": [
+            "react",
+            "vite",
+            "frontend",
+            "components",
+            "architecture",
+            "ui"
+        ]
+    },
+    "frontend.routing": {
+        "keywords": [
+            "routing",
+            "routes",
+            "react router",
+            "navigation",
+            "protected routes"
+        ]
+    },
+    "frontend.caching": {
+        "keywords": [
+            "cache",
+            "caching",
+            "map",
+            "memory cache",
+            "api requests",
+            "performance"
+        ]
+    },
+    "frontend.websocket": {
+        "keywords": [
+            "websocket",
+            "realtime",
+            "live updates",
+            "dashboard updates",
+            "push updates"
+        ]
+    },
+    "frontend.projects": {
+        "keywords": [
+            "project",
+            "projects",
+            "dashboard",
+            "api key",
+            "settings"
+        ]
+    },
+    "frontend.issues": {
+        "keywords": [
+            "issue page",
+            "issue dashboard",
+            "error issue",
+            "issue management"
+        ]
+    },
+    "frontend.logs": {
+        "keywords": [
+            "logs",
+            "log viewer",
+            "event logs",
+            "log inspection"
+        ]
+    },
+    "frontend.ui_components": {
+        "keywords": [
+            "components",
+            "cards",
+            "tables",
+            "forms",
+            "modals",
+            "pagination"
+        ]
+    },
+    "backend.architecture": {
+        "keywords": [
+            "fastapi",
+            "postgresql",
+            "websocket",
+            "queue",
+            "redis",
+            "redis streams",
+            "kafka",
+            "rabbitmq",
+            "message broker",
+            "vector database"
+        ]
+    },
+    "backend.ingestion": {
+        "keywords": [
+            "ingestion",
+            "collect",
+            "endpoint",
+            "event intake",
+            "incoming events"
+        ]
+    },
+    "backend.fingerprinting": {
+        "keywords": [
+            "fingerprint",
+            "duplicate issue",
+            "same error",
+            "grouping",
+            "issue aggregation",
+            "occurrence"
+        ]
+    },
+    "backend.workers": {
+        "keywords": [
+            "worker",
+            "background processing",
+            "event processing",
+            "issue creation",
+            "log processing"
+        ]
+    },
+    "backend.queues": {
+        "keywords": [
+            "queue",
+            "buffer",
+            "worker",
+            "ingestion",
+            "event processing",
+            "disk queue"
+        ]
+    },
+    "backend.websocket": {
+        "keywords": [
+            "realtime",
+            "live updates",
+            "websocket",
+            "push notifications",
+            "dashboard updates"
+        ]
+    },
+    "backend.authentication": {
+        "keywords": [
+            "authentication",
+            "api key",
+            "project validation",
+            "security",
+            "authorization"
+        ]
+    },
+    "backend.scalability": {
+        "keywords": [
+            "scaling",
+            "scalability",
+            "performance",
+            "workers",
+            "queues",
+            "traffic"
+        ]
+    },
+    "sdk.overview": {
+        "keywords": [
+            "sdk",
+            "browser sdk",
+            "monitoring sdk",
+            "tracking",
+            "code",
+            "installation",
+            "install"
+        ]
+    },
+    "sdk.initialization": {
+        "keywords": [
+            "install",
+            "setup",
+            "script",
+            "api key",
+            "integration"
+        ]
+    },
+    "sdk.capture": {
+        "keywords": [
+            "capture",
+            "error tracking",
+            "javascript error",
+            "stack trace",
+            "browser error"
+        ]
+    },
+    "sdk.batching": {
+        "keywords": [
+            "batching",
+            "batch",
+            "events",
+            "network requests",
+            "optimization"
+        ]
+    },
+    "sdk.transport": {
+        "keywords": [
+            "transport",
+            "sending events",
+            "network",
+            "delivery",
+            "event transmission"
+        ]
+    },
+    "sdk.breadcrumbs": {
+        "keywords": [
+            "breadcrumbs",
+            "click tracking",
+            "navigation history",
+            "user actions",
+            "debugging context"
+        ]
+    },
+    "sdk.configuration": {
+        "keywords": [
+            "configuration",
+            "settings",
+            "api key",
+            "setup options"
+        ]
+    },
+    "issues.issue_lifecycle": {
+        "keywords": [
+            "issue lifecycle",
+            "issue creation",
+            "issue update",
+            "issue flow"
+        ]
+    },
+    "issues.fingerprinting": {
+        "keywords": [
+            "issue fingerprint",
+            "duplicate issue",
+            "error grouping",
+            "same error"
+        ]
+    },
+    "issues.grouping": {
+        "keywords": [
+            "grouping",
+            "duplicate issues",
+            "same issue",
+            "aggregation"
+        ]
+    },
+    "issues.occurrence_tracking": {
+        "keywords": [
+            "occurrence",
+            "count",
+            "frequency",
+            "repeated errors"
+        ]
+    },
+    "issues.resolution_flow": {
+        "keywords": [
+            "resolution",
+            "fix",
+            "investigation",
+            "debugging workflow"
+        ]
+    },
+    "logs.ingestion": {
+        "keywords": [
+            "log ingestion",
+            "incoming logs",
+            "event intake"
+        ]
+    },
+    "logs.processing": {
+        "keywords": [
+            "log processing",
+            "processing pipeline",
+            "workers"
+        ]
+    },
+    "logs.storage": {
+        "keywords": [
+            "logs",
+            "database",
+            "storage",
+            "postgres",
+            "event history"
+        ]
+    },
+    "logs.queue_flow": {
+        "keywords": [
+            "queue flow",
+            "event flow",
+            "queue processing",
+            "pipeline"
+        ]
+    },
+    "logs.realtime_updates": {
+        "keywords": [
+            "realtime logs",
+            "live logs",
+            "websocket logs",
+            "instant updates"
+        ]
+    },
+    "docs.faq": {
+        "keywords": [
+            "faq",
+            "questions",
+            "help",
+            "common questions"
+        ]
+    },
+    "docs.installation": {
+        "keywords": [
+            "installation",
+            "install",
+            "setup",
+            "integration",
+            "getting started"
+        ]
+    },
+    "docs.api_keys": {
+        "keywords": [
+            "api key",
+            "public key",
+            "project key",
+            "authentication"
+        ]
+    },
+    "docs.troubleshooting": {
+        "keywords": [
+            "problem",
+            "issue",
+            "not working",
+            "debug",
+            "help",
+            "troubleshoot"
+        ]
+    },
+    "docs.deployment": {
+        "keywords": [
+            "deployment",
+            "production",
+            "hosting",
+            "release"
+        ]
+    }
+}

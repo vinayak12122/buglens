@@ -9,6 +9,7 @@ from core.buffer import flusher
 from api.routes.auth import router as auth_router
 from api.routes.ingest import router as ingest_router
 from api.routes.projects import router as project_router
+from api.routes.rag import router as rag_router
 
 load_dotenv()
 
@@ -38,6 +39,7 @@ ingest_api.add_middleware(
 
 dashboard_api.include_router(auth_router)
 dashboard_api.include_router(project_router)
+dashboard_api.include_router(rag_router)
 
 ingest_api.include_router(ingest_router)
 
@@ -65,3 +67,5 @@ def health():
 
 if __name__ == "__main__":
     uvicorn.run("main:app", host="0.0.0.0", port=8000)
+
+# curl -N -X POST http://localhost:8000/api/rag/ask -H "Content-Type: application/json" -d "{\"question\":\"what is the process to get an api key of buglens?\"}" 

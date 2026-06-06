@@ -7,6 +7,7 @@ import { AuthProvider } from './context/AuthContext.jsx'
 import { ThemeProvider } from './context/ThemeContext.jsx'
 import { ProjectProvider } from './context/ProjectContext.jsx'
 import { LogProvider } from './context/LogContext.jsx'
+import { RagProvider } from './context/RagContext.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -15,7 +16,9 @@ createRoot(document.getElementById('root')).render(
         <AuthProvider>
           <ProjectProvider>
             <LogProvider>
-            <App />
+              <RagProvider>
+                <App />
+              </RagProvider>
             </LogProvider>
           </ProjectProvider>
         </AuthProvider>

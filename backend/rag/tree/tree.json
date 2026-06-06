@@ -1,0 +1,58 @@
+{
+    "product": {
+        "overview": {},
+        "architecture": {},
+        "scalability": {},
+        "limitations": {}
+    },
+    "frontend": {
+        "architecture": {},
+        "routing": {},
+        "caching": {},
+        "websocket": {},
+        "projects": {},
+        "issues": {},
+        "logs": {},
+        "ui_components": {}
+    },
+    "backend": {
+        "architecture": {},
+        "ingestion": {},
+        "fingerprinting": {},
+        "workers": {},
+        "queues": {},
+        "websocket": {},
+        "authentication": {},
+        "scalability": {}
+    },
+    "sdk": {
+        "overview": {},
+        "initialization": {},
+        "capture": {},
+        "batching": {},
+        "transport": {},
+        "breadcrumbs": {},
+        "configuration": {}
+    },
+    "issues": {
+        "issue_lifecycle": {},
+        "fingerprinting": {},
+        "grouping": {},
+        "occurrence_tracking": {},
+        "resolution_flow": {}
+    },
+    "logs": {
+        "ingestion": {},
+        "processing": {},
+        "storage": {},
+        "queue_flow": {},
+        "realtime_updates": {}
+    },
+    "docs": {
+        "faq": {},
+        "installation": {},
+        "api_keys": {},
+        "troubleshooting": {},
+        "deployment": {}
+    }
+}
