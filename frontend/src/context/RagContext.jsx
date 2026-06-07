@@ -23,130 +23,106 @@ export const RagProvider = ({children}) => {
 
     const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
-    const sendMessage = async(question) =>{
-
+    const sendMessage = async (question) => {
         const trimmed = question?.trim();
-
-        if(!trimmed || loading){
-            return;
-        }
+        if (!trimmed || loading) return;
 
         setLoading(true);
 
-        const userMessage = {
-            sender:"user",
-            text:trimmed,
-        }
-
-        const aiMessage = {
-            sender:"ai",
-            text:"",
-        };
-
-        const nextMessages = [
-            ...messagesRef.current,
-            userMessage,
-            aiMessage,
-        ];
+        const userMessage = { sender: "user", text: trimmed };
+        const aiMessage = { sender: "ai", text: "" };
+        const nextMessages = [...messagesRef.current, userMessage, aiMessage];
 
         syncMessages(nextMessages);
 
         try {
-            const history = nextMessages.slice(0,-1).map(msg => ({
-                role:msg.sender === "user" ? "user":"assistant",
-                content:msg.text,
+            const history = nextMessages.slice(0, -1).map((msg) => ({
+                role: msg.sender === "user" ? "user" : "assistant",
+                content: msg.text,
             }));
 
-            const res = await fetch(`${backendUrl}/rag/ask`,{
-                method:"POST",
-                headers:{
-                    "Content-Type":"application/json",
-                },
-                body:JSON.stringify({
-                    question:trimmed,
-                    history,
-                }),
+            const res = await fetch(`${backendUrl}/rag/ask`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ question: trimmed, history }),
             });
 
-            if(!res.ok){
-                toast(`Request failed (${res.status})`,"error");
-                return
+            if (!res.ok) {
+                toast(`Request failed (${res.status})`, "error");
+                setLoading(false);
+                return;
             }
-            
-            if(!res.body){
-                toast(`Response Unavailable`,"error");
+
+            if (!res.body) {
+                toast(`Response Unavailable`, "error");
+                setLoading(false);
                 return;
             }
 
             const reader = res.body.getReader();
-
             const decoder = new TextDecoder();
-
             let aiText = "";
             let buffer = "";
 
-            while(true){
-                const {done,value} = await reader.read();
+            while (true) {
+                const { done, value } = await reader.read();
+                if (done) break;
 
-                if(done){
-                    break;
-                }
-
-                buffer += decoder.decode(
-                    value,
-                    {stream:true}
-                );
-
+                buffer += decoder.decode(value, { stream: true });
                 const events = buffer.split("\n\n");
-
                 buffer = events.pop() || "";
 
-                for(const event of events){
+                for (const event of events) {
                     const lines = event.split("\n");
 
-                    for (const line of lines){
-                        if(!line.startsWith("data:")){
-                            continue
-                        }
+                    for (const line of lines) {
+                        if (!line.startsWith("data:")) continue;
 
-                        const token = line.slice(5);
-                        if(token==="[DONE]"){
+                        // FIX: If it is an exact empty line match ("data:"), it is a true newline block!
+                        if (line === "data:") {
+                            aiText += "\n";
                             continue;
                         }
 
-                        aiText += token;
+                        // FIX: Safely extract data content. 
+                        // If it matches "data: ", remove the prefix and the single space.
+                        let token = "";
+                        if (line.startsWith("data: ")) {
+                            token = line.slice(6);
+                        } else {
+                            token = line.slice(5);
+                        }
 
-                        syncMessages(prev => {
-                            const copy = [
-                                ...prev,
-                            ];
+                        if (token === "[DONE]") continue;
 
+                        // Append the pure token alongside its natural trailing structural line endings
+                        aiText += token + "\n";
+
+                        syncMessages((prev) => {
+                            const copy = [...prev];
                             copy[copy.length - 1] = {
-                                sender:"ai",
+                                sender: "ai",
                                 text: aiText,
                             };
-
                             return copy;
                         });
                     }
                 }
             }
         } catch (error) {
-            toast(error?.message,"error");
-            syncMessages(prev => {
+            toast(error?.message, "error");
+            syncMessages((prev) => {
                 const copy = [...prev];
-
                 copy[copy.length - 1] = {
-                    sender:'ai',
+                    sender: 'ai',
                     text: "Unable to generate response",
                 };
-
-                return copy
+                return copy;
             });
-        }finally{
+        } finally {
             setLoading(false);
         }
-    }
+    };
 
     const clearChat = () =>{
         messagesRef.current = [];
