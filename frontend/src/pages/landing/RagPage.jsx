@@ -232,8 +232,8 @@ const RagPage = ({ openRag, setOpenRag }) => {
         p-2.5 rounded-full flex items-center justify-center
         transition-all duration-200
         ${loading || !inputValue.trim()
-                            ? "bg-gray-400  cursor-not-allowed"
-                            : "bg-purple-700 hover:bg-purple-800 cursor-pointer text-white"}
+                            ? "text-gray-400  cursor-not-allowed"
+                            : "bg-purple-900 hover:bg-purple-950 text-white cursor-pointer"}
     `}
                 >
                     {loading ? (
