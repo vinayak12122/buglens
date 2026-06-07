@@ -175,3 +175,76 @@ body {
 .status option{
   border-radius: 4px;
 }
+
+ @keyframes smoothScale {
+
+   0%,
+   100% {
+     transform: scale(0.92);
+   }
+
+   50% {
+     transform: scale(1.08);
+   }
+ }
+
+ @keyframes rotateRainbow {
+   0% {
+     box-shadow:
+       -8px -8px 12px rgba(99, 89, 248, 0.65),
+       0px -8px 12px rgba(156, 50, 226, 0.65),
+       8px -8px 12px rgba(243, 104, 150, 0.65),
+       8px 0 12px rgba(255, 11, 11, 0.65),
+       8px 8px 12px rgba(255, 85, 0, 0.65),
+       0 8px 12px rgba(255, 149, 0, 0.65),
+       -8px 8px 12px rgba(255, 183, 0, 0.65);
+   }
+
+   25% {
+     box-shadow:
+       8px -8px 12px rgba(99, 89, 248, 0.65),
+       8px 0px 12px rgba(156, 50, 226, 0.65),
+       8px 8px 12px rgba(243, 104, 150, 0.65),
+       0px 8px 12px rgba(255, 11, 11, 0.65),
+       -8px 8px 12px rgba(255, 85, 0, 0.65),
+       -8px 0px 12px rgba(255, 149, 0, 0.65),
+       -8px -8px 12px rgba(255, 183, 0, 0.65);
+   }
+
+   50% {
+     box-shadow:
+       8px 8px 12px rgba(99, 89, 248, 0.65),
+       0px 8px 12px rgba(156, 50, 226, 0.65),
+       -8px 8px 12px rgba(243, 104, 150, 0.65),
+       -8px 0 12px rgba(255, 11, 11, 0.65),
+       -8px -8px 12px rgba(255, 85, 0, 0.65),
+       0 -8px 12px rgba(255, 149, 0, 0.65),
+       8px -8px 12px rgba(255, 183, 0, 0.65);
+   }
+
+   75% {
+     box-shadow:
+       -8px 8px 12px rgba(99, 89, 248, 0.65),
+       -8px 0px 12px rgba(156, 50, 226, 0.65),
+       -8px -8px 12px rgba(243, 104, 150, 0.65),
+       0px -8px 12px rgba(255, 11, 11, 0.65),
+       8px -8px 12px rgba(255, 85, 0, 0.65),
+       8px 0px 12px rgba(255, 149, 0, 0.65),
+       8px 8px 12px rgba(255, 183, 0, 0.65);
+   }
+
+   100% {
+     box-shadow:
+       -8px -8px 12px rgba(99, 89, 248, 0.65),
+       0px -8px 12px rgba(156, 50, 226, 0.65),
+       8px -8px 12px rgba(243, 104, 150, 0.65),
+       8px 0 12px rgba(255, 11, 11, 0.65),
+       8px 8px 12px rgba(255, 85, 0, 0.65),
+       0 8px 12px rgba(255, 149, 0, 0.65),
+       -8px 8px 12px rgba(255, 183, 0, 0.65);
+   }
+ }
+
+ .rainbow-spinner-glow {
+   animation: smoothScale 2.5s infinite ease-in-out, rotateRainbow 4s infinite linear;
+ }
