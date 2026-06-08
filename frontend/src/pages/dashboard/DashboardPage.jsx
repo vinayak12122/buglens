@@ -79,7 +79,7 @@ const DashboardPage = () => {
         />
         <div
           className={`
-    fixed top-0 left-0 h-screen w-[80%] max-w-xs
+    fixed top-0 left-0 h-full w-[80%] max-w-xs
     bg-app-bg border-r border-app-border
     z-50 sm:hidden flex flex-col justify-between
     transition-transform duration-300 ease-in-out
@@ -107,10 +107,10 @@ const DashboardPage = () => {
           <div className='pb-10'>
             <div className='flex w-full px-8 items-center gap-5'>
               <div className='flex items-center justify-center text-lg p-2 gap-2'>
-                <div className='bg-app-text text-app-bg font-semibold rounded-full p flex items-center justify-center text-lg p-2 tracking-wider border border-purple-500/30 dynamic-avatar '>
+                <div className='bg-app-text text-app-bg font-semibold rounded-full p flex items-center justify-center text-sm p-2 tracking-wider border border-purple-500/30 dynamic-avatar '>
                   {getLetter(user?.name)}
                 </div>
-                <p className='text-xl capitalize'>{user?.name || "Guest User"}</p>
+                <p className='text-sm capitalize'>{user?.name || "Guest User"}</p>
               </div>
               <p className='text-orange-400 bg-orange-400/20 px-3 py-1 rounded-full text-sm'>Free</p>
             </div>

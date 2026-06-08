@@ -114,11 +114,11 @@ const RagPage = ({ openRag, setOpenRag }) => {
     };
 
     return (
-        <div className='text-app-bg flex flex-col h-full w-full overflow-hidden px-3 py-2 bg-slate-50/50'>
+        <div className='text-app-text flex flex-col h-full w-full overflow-hidden px-3 py-2 bg-black'>
 
-            <div className="flex-none border-b border-gray-200 px-4 py-2">
+            <div className="flex-none border-b- border-gray-600/50 px-4 py-2">
                 <div className="flex items-center justify-between">
-                    <h3 className="font-semibold text-lg text-gray-800">BugLens AI</h3>
+                    <h3 className="font-semibold text-lg text-white 800">BugLens AI</h3>
                     <span className="h-8 w-8 rounded-full flex items-center justify-center hover:bg-slate-800/5 duration-200 cursor-pointer"
                         onClick={() => setOpenRag(false)}
                     >
@@ -127,7 +127,6 @@ const RagPage = ({ openRag, setOpenRag }) => {
                 </div>
             </div>
 
-            {/* Main view logic switch */}
             {messages.length > 0 ? (
                 <div className="grow overflow-y-auto py-4 space-y-4 pr-1 scrollbar-hide">
                     {messages.map((msg, index) => (
@@ -146,20 +145,20 @@ const RagPage = ({ openRag, setOpenRag }) => {
                             <div
                                 className={`rounded-2xl p-3 text-sm max-w-[90%] leading-relaxed overflow-x-auto ${msg.sender === "user"
                                     ? "bg-white/80 text-white rounded-tr-none border border-black/20"
-                                    : "bg-white text-gray-800 border border-gray-300 rounded-tl-none "
+                                    : "bg-white text-white 800 border border-gray-300 rounded-tl-none "
                                     }`}
                             >
                                 <ReactMarkdown
                                     remarkPlugins={[remarkGfm]}
                                     components={{
-                                        h1: ({ children }) => <h1 className="text-xl font-bold mt-4 mb-2 text-gray-900 block">{children}</h1>,
-                                        h2: ({ children }) => <h2 className="text-lg font-bold mt-4 mb-2 text-gray-900 block">{children}</h2>,
-                                        h3: ({ children }) => <h3 className="text-base font-semibold mt-3 mb-2 text-gray-900 block">{children}</h3>,
-                                        p: ({ children }) => <div className="mb-2.5 leading-6 text-gray-700 block whitespace-pre-wrap">{children}</div>,
-                                        ul: ({ children }) => <ul className="list-disc pl-5 mb-3 space-y-1 text-gray-700 block">{children}</ul>,
-                                        ol: ({ children }) => <ol className="list-decimal pl-5 mb-3 space-y-1 text-gray-700 block">{children}</ol>,
+                                        h1: ({ children }) => <h1 className="text-xl font-bold mt-4 mb-2 text-white 900 block">{children}</h1>,
+                                        h2: ({ children }) => <h2 className="text-lg font-bold mt-4 mb-2 text-white 900 block">{children}</h2>,
+                                        h3: ({ children }) => <h3 className="text-base font-semibold mt-3 mb-2 text-white 900 block">{children}</h3>,
+                                        p: ({ children }) => <div className="mb-2.5 leading-6 text-white 700 block whitespace-pre-wrap">{children}</div>,
+                                        ul: ({ children }) => <ul className="list-disc pl-5 mb-3 space-y-1 text-white 700 block">{children}</ul>,
+                                        ol: ({ children }) => <ol className="list-decimal pl-5 mb-3 space-y-1 text-white 700 block">{children}</ol>,
                                         blockquote: ({ children }) => (
-                                            <blockquote className="border-l-4 border-slate-400 pl-3 italic my-3 bg-slate-50 py-1.5 rounded-r text-gray-600 block">
+                                            <blockquote className="border-l-4 border-slate-400 pl-3 italic my-3 bg-slate-50 py-1.5 rounded-r text-white 600 block">
                                                 {children}
                                             </blockquote>
                                         ),
@@ -191,10 +190,10 @@ const RagPage = ({ openRag, setOpenRag }) => {
                 </div>
             ) : (
                 <div className='grow flex flex-col justify-center items-center px-4 text-center'>
-                    <h2 className='text-xl font-bold text-gray-800 tracking-tight'>
+                    <h2 className='text-xl font-bold text-white 800 tracking-tight'>
                         Hey {user?.name || 'there'}!
                     </h2>
-                    <p className="text-sm text-gray-500 mt-1 max-w-70 mb-6">
+                    <p className="text-sm text-gray-500 500 mt-1 max-w-70 mb-6">
                         Ask anything about BugLens features, configuration, or workflows.
                     </p>
 
@@ -203,7 +202,7 @@ const RagPage = ({ openRag, setOpenRag }) => {
                             <button
                                 key={index}
                                 onClick={() => handleSend(prompt.label)}
-                                className="w-full flex items-center gap-3 bg-white hover:bg-slate-50 border border-gray-200/80 p-3 rounded-full text-center text-xs font-medium text-gray-700 transition-all duration-200 shadow-sm hover:scale-[1.02] cursor-pointer"
+                                className="w-full flex items-center gap-3 hover:bg-slate-900 border border-gray-600/40 p-3 rounded-full text-center text-xs font-medium text-white 700 transition-all duration-200 shadow-sm hover:scale-[1.02] cursor-pointer"
                             >
                                 {prompt.icon}
                                 <span className="truncate text-center">{prompt.label}</span>
@@ -216,14 +215,14 @@ const RagPage = ({ openRag, setOpenRag }) => {
 
             <form
                 onSubmit={(e) => { e.preventDefault(); handleSend(inputValue); }}
-                className="flex gap-2 bg-white p-1.5 mb-2 rounded-full items-center border border-gray-200/50"
+                className="flex gap-2 bg-mauve-800/40 border border-gray-600/30 p-1.5 mb-2 rounded-full items-center"
             >
                 <input
                     type="text"
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
                     placeholder="Ask me a question..."
-                    className="grow p-2 text-sm bg-transparent outline-none text-gray-800 pl-4"
+                    className="grow p-2 text-sm bg-transparent outline-none text-white 800 pl-4"
                 />
                 <button
                     type="submit"
@@ -232,7 +231,7 @@ const RagPage = ({ openRag, setOpenRag }) => {
         p-2.5 rounded-full flex items-center justify-center
         transition-all duration-200
         ${loading || !inputValue.trim()
-                            ? "text-gray-400  cursor-not-allowed"
+                            ? "text-white 400  cursor-not-allowed"
                             : "bg-purple-900 hover:bg-purple-950 text-white cursor-pointer"}
     `}
                 >
