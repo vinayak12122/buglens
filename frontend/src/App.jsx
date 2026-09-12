@@ -18,15 +18,15 @@ import LiveDemo from './pages/landing/LiveDemo';
 const App = () => {
   const { loading, isAuthenticated } = useAuth();
 
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-app-bg">
-        <span className="text-xl font-medium text-app-text after:content-[''] after:animate-loading-dots">
-          Buglens loading
-        </span>
-      </div>
-    );
-  }
+  // if (loading) {
+  //   return (
+  //     <div className="min-h-screen flex items-center justify-center bg-app-bg">
+  //       <span className="text-xl font-medium text-app-text after:content-[''] after:animate-loading-dots">
+  //         Buglens loading
+  //       </span>
+  //     </div>
+  //   );
+  // }
 
   return (
     <div className="min-h-screen bg-app-bg text-app-text transition-colors duration-300 font-poppins">
