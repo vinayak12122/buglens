@@ -66,6 +66,7 @@ const ChatCodeBlock = ({ language, value }) => {
 const RagPage = ({ openRag, setOpenRag }) => {
 
     const [inputValue, setInputValue] = useState('')
+    const [isDisableApi, setIsDisableApi] = useState(false);
     const { user } = useAuth()
     const { messages, loading, sendMessage } = useRag();
 
@@ -127,121 +128,131 @@ const RagPage = ({ openRag, setOpenRag }) => {
                 </div>
             </div>
 
-            {messages.length > 0 ? (
-                <div className="grow overflow-y-auto py-4 space-y-4 pr-1 scrollbar-hide">
-                    {messages.map((msg, index) => (
-                        <div key={index} className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'} items-start gap-2`}>
-                            {msg.sender === "ai" && (
-                                <>
-                                    {
-                                        loading &&
-                                        index === messages.length - 1
-                                        && <Loader size={18} className="animate-spin" />
+            {isDisableApi ?
+                <>
+                    {messages.length > 0 ? (
+                        <div className="grow overflow-y-auto py-4 space-y-4 pr-1 scrollbar-hide">
+                            {messages.map((msg, index) => (
+                                <div key={index} className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'} items-start gap-2`}>
+                                    {msg.sender === "ai" && (
+                                        <>
+                                            {
+                                                loading &&
+                                                index === messages.length - 1
+                                                && <Loader size={18} className="animate-spin" />
 
-                                    }
-
-                                </>
-                            )}
-                            <div
-                                className={`rounded-2xl p-3 text-sm max-w-[90%] leading-relaxed overflow-x-auto ${msg.sender === "user"
-                                    ? "bg-mauve-400/30 dark:bg-mauve-700/50 text-app-text rounded-tr-none border border-black/20"
-                                    : "text-app-text 800  rounded-tl-none "
-                                    }`}
-                            >
-                                <ReactMarkdown
-                                    remarkPlugins={[remarkGfm]}
-                                    components={{
-                                        h1: ({ children }) => <h1 className="text-xl font-bold mt-4 mb-2 text-app-text 900 block">{children}</h1>,
-                                        h2: ({ children }) => <h2 className="text-lg font-bold mt-4 mb-2 text-app-text 900 block">{children}</h2>,
-                                        h3: ({ children }) => <h3 className="text-base font-semibold mt-3 mb-2 text-app-text 900 block">{children}</h3>,
-                                        p: ({ children }) => <div className="mb-2.5 leading-6 700 block whitespace-pre-wrap">{children}</div>,
-                                        ul: ({ children }) => <ul className="list-disc pl-5 mb-3 space-y-1 text-app-text 700 block">{children}</ul>,
-                                        ol: ({ children }) => <ol className="list-decimal pl-5 mb-3 space-y-1 text-app-text 700 block">{children}</ol>,
-                                        blockquote: ({ children }) => (
-                                            <blockquote className="border-l-4 border-slate-400 pl-3 italic my-3 bg-slate-50 py-1.5 rounded-r text-app-text 600 block">
-                                                {children}
-                                            </blockquote>
-                                        ),
-                                        code({ inline, className, children }) {
-                                            const match = /language-(\w+)/.exec(className || "");
-                                            const codeContent = String(children).replace(/\n$/, "");
-
-                                            if (!inline) {
-                                                return (
-                                                    <ChatCodeBlock
-                                                        language={match ? match[1] : ''}
-                                                        value={codeContent}
-                                                    />
-                                                );
                                             }
-                                            return (
-                                                <code className="bg-slate-100 border border-slate-200 font-mono text-xs font-semibold px-1.5 py-0.5 rounded text-pink-600 mx-0.5 wrap-break-words">
-                                                    {children}
-                                                </code>
-                                            );
-                                        }
-                                    }}
-                                >
-                                    {cleanMarkdown(msg.text)}
-                                </ReactMarkdown>
+
+                                        </>
+                                    )}
+                                    <div
+                                        className={`rounded-2xl p-3 text-sm max-w-[90%] leading-relaxed overflow-x-auto ${msg.sender === "user"
+                                            ? "bg-mauve-400/30 dark:bg-mauve-700/50 text-app-text rounded-tr-none border border-black/20"
+                                            : "text-app-text 800  rounded-tl-none "
+                                            }`}
+                                    >
+                                        <ReactMarkdown
+                                            remarkPlugins={[remarkGfm]}
+                                            components={{
+                                                h1: ({ children }) => <h1 className="text-xl font-bold mt-4 mb-2 text-app-text 900 block">{children}</h1>,
+                                                h2: ({ children }) => <h2 className="text-lg font-bold mt-4 mb-2 text-app-text 900 block">{children}</h2>,
+                                                h3: ({ children }) => <h3 className="text-base font-semibold mt-3 mb-2 text-app-text 900 block">{children}</h3>,
+                                                p: ({ children }) => <div className="mb-2.5 leading-6 700 block whitespace-pre-wrap">{children}</div>,
+                                                ul: ({ children }) => <ul className="list-disc pl-5 mb-3 space-y-1 text-app-text 700 block">{children}</ul>,
+                                                ol: ({ children }) => <ol className="list-decimal pl-5 mb-3 space-y-1 text-app-text 700 block">{children}</ol>,
+                                                blockquote: ({ children }) => (
+                                                    <blockquote className="border-l-4 border-slate-400 pl-3 italic my-3 bg-slate-50 py-1.5 rounded-r text-app-text 600 block">
+                                                        {children}
+                                                    </blockquote>
+                                                ),
+                                                code({ inline, className, children }) {
+                                                    const match = /language-(\w+)/.exec(className || "");
+                                                    const codeContent = String(children).replace(/\n$/, "");
+
+                                                    if (!inline) {
+                                                        return (
+                                                            <ChatCodeBlock
+                                                                language={match ? match[1] : ''}
+                                                                value={codeContent}
+                                                            />
+                                                        );
+                                                    }
+                                                    return (
+                                                        <code className="bg-slate-100 border border-slate-200 font-mono text-xs font-semibold px-1.5 py-0.5 rounded text-pink-600 mx-0.5 wrap-break-words">
+                                                            {children}
+                                                        </code>
+                                                    );
+                                                }
+                                            }}
+                                        >
+                                            {cleanMarkdown(msg.text)}
+                                        </ReactMarkdown>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    ) : (
+                        <div className='grow flex flex-col justify-center items-center px-4 text-center'>
+                            <h2 className='text-xl font-bold text-app-text 800 tracking-tight'>
+                                Hey {user?.name || 'there'}!
+                            </h2>
+                            <p className="text-sm text-gray-500 500 mt-1 max-w-70 mb-6">
+                                Ask anything about BugLens features, configuration, or workflows.
+                            </p>
+
+                            <div className="w-full max-w-[320px] space-y-2">
+                                {starterPrompts.map((prompt, index) => (
+                                    <button
+                                        key={index}
+                                        onClick={() => handleSend(prompt.label)}
+                                        className="w-full flex items-center gap-3 hover:bg-mauve-600/20 border border-gray-600/30 p-3 rounded-full text-center text-xs font-medium text-app-text 700 transition-all duration-200 shadow-sm hover:scale-[1.02] cursor-pointer"
+                                    >
+                                        {prompt.icon}
+                                        <span className="truncate text-center">{prompt.label}</span>
+                                    </button>
+                                ))}
                             </div>
                         </div>
-                    ))}
-                </div>
-            ) : (
-                <div className='grow flex flex-col justify-center items-center px-4 text-center'>
-                    <h2 className='text-xl font-bold text-app-text 800 tracking-tight'>
-                        Hey {user?.name || 'there'}!
-                    </h2>
-                    <p className="text-sm text-gray-500 500 mt-1 max-w-70 mb-6">
-                        Ask anything about BugLens features, configuration, or workflows.
-                    </p>
-
-                    <div className="w-full max-w-[320px] space-y-2">
-                        {starterPrompts.map((prompt, index) => (
-                            <button
-                                key={index}
-                                onClick={() => handleSend(prompt.label)}
-                                className="w-full flex items-center gap-3 hover:bg-mauve-600/20 border border-gray-600/30 p-3 rounded-full text-center text-xs font-medium text-app-text 700 transition-all duration-200 shadow-sm hover:scale-[1.02] cursor-pointer"
-                            >
-                                {prompt.icon}
-                                <span className="truncate text-center">{prompt.label}</span>
-                            </button>
-                        ))}
-                    </div>
-                </div>
-            )}
+                    )}
 
 
-            <form
-                onSubmit={(e) => { e.preventDefault(); handleSend(inputValue); }}
-                className="flex gap-2 bg-mauve-300/20 dark:bg-mauve-700/20 border border-gray-600/30 p-1.5 mb-2 rounded-full items-center"
-            >
-                <input
-                    type="text"
-                    value={inputValue}
-                    onChange={(e) => setInputValue(e.target.value)}
-                    placeholder="Ask me a question..."
-                    className="grow p-2 text-sm bg-transparent outline-none text-app-text 800 pl-4"
-                />
-                <button
-                    type="submit"
-                    disabled={loading || !inputValue.trim()}
-                    className={`
+                    <form
+                        onSubmit={(e) => { e.preventDefault(); handleSend(inputValue); }}
+                        className="flex gap-2 bg-mauve-300/20 dark:bg-mauve-700/20 border border-gray-600/30 p-1.5 mb-2 rounded-full items-center"
+                    >
+                        <input
+                            type="text"
+                            value={inputValue}
+                            onChange={(e) => setInputValue(e.target.value)}
+                            placeholder="Ask me a question..."
+                            className="grow p-2 text-sm bg-transparent outline-none text-app-text 800 pl-4"
+                        />
+                        <button
+                            type="submit"
+                            disabled={loading || !inputValue.trim()}
+                            className={`
         p-2.5 rounded-full flex items-center justify-center
         transition-all duration-200
         ${loading || !inputValue.trim()
-                            ? "text-app-text-h 400  cursor-not-allowed"
-                            : "bg-purple-900 hover:bg-purple-950 text-white cursor-pointer"}
+                                    ? "text-app-text-h 400  cursor-not-allowed"
+                                    : "bg-purple-900 hover:bg-purple-950 text-white cursor-pointer"}
     `}
-                >
-                    {loading ? (
-                        <Loader2 size={14} className="animate-spin" />
-                    ) : (
-                        <Send size={14} />
-                    )}
-                </button>
-            </form>
+                        >
+                            {loading ? (
+                                <Loader2 size={14} className="animate-spin" />
+                            ) : (
+                                <Send size={14} />
+                            )}
+                        </button>
+                    </form> </> :
+                <div className="h-full w-full flex items-center justify-center text-center flex-col">
+                    <p className='text-[20px]'>Sorry,</p>
+                    <p>
+                        currently LLM is disable due to of its free usage limit
+                    </p>
+
+                </div>
+            }
         </div>
     )
 }
