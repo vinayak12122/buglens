@@ -66,7 +66,7 @@ const ChatCodeBlock = ({ language, value }) => {
 const RagPage = ({ openRag, setOpenRag }) => {
 
     const [inputValue, setInputValue] = useState('')
-    const [isDisableApi, setIsDisableApi] = useState(false);
+    const [isDisableApi, setIsDisableApi] = useState(true);
     const { user } = useAuth()
     const { messages, loading, sendMessage } = useRag();
 
