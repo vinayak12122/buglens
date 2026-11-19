@@ -12,12 +12,10 @@ try:
 except ImportError:
     from chunker import chunk_directory
 
-EMBED_MODEL = "BAAI/bge-small-en-v1.5"
-COLLECTION = "buglens_kb"
-
-BASE = Path(__file__).resolve().parent
-KNOWLEDGE_DIR = BASE.parent / "knowledge"
-QDRANT_PATH = BASE / "qdrant_data"
+try:
+    from .config import EMBED_MODEL, COLLECTION, KNOWLEDGE_DIR, QDRANT_PATH
+except ImportError:
+    from config import EMBED_MODEL, COLLECTION, KNOWLEDGE_DIR, QDRANT_PATH
 
 def build_index() -> None:
     chunks = chunk_directory(KNOWLEDGE_DIR)

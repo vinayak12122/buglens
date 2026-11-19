@@ -24,11 +24,11 @@ class VectorRagService:
         self.llm = llm
         self.k = k
         if use_reranker is None:
-            use_reranker = os.getenv("RAG_USE_RERANKER", "true").lower() == "true"
+            use_reranker = os.getenv("RAG_USE_RERANKER", "false").lower() == "true"
         self.use_reranker = use_reranker
 
         self.retriever = Retriever()
-        self.retriever.retrieve("warm up", use_reranker=True)
+        # self.retriever.retrieve("warm up", use_reranker=True)
         self._lock = threading.Lock()
 
     def _retrieve(self, question: str) -> list[Hit]:
