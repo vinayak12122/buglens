@@ -1,4 +1,4 @@
-# SDK Initialization
+# Event Capture
 
 Initializing the BugLens SDK requires adding the BugLens script to an application's HTML document.
 

@@ -1,20 +1,27 @@
 # Current Limitations
 
-Frontend limitations:
+BugLens currently has several limitations. This page lists what the platform does not support yet, on the frontend and on the backend.
 
-- Cache is memory based
-- Cache resets after page refresh
-- No IndexedDB persistence
-- No service worker caching
-- No virtualized rendering
-- No React Query synchronization
+## Frontend limitations
 
-Backend limitations:
+The current limitations of the BugLens frontend are:
 
-- No Redis
-- No Kafka
-- No RabbitMQ
-- No vector database
-- No distributed worker orchestration
+- The cache is memory based, so it resets after a page refresh
+- There is no IndexedDB persistence
+- There is no service worker caching
+- There is no virtualized rendering
+- There is no React Query synchronization
 
-The current architecture prioritizes simplicity and maintainability while supporting current platform requirements.
+## Backend limitations
+
+The current limitations of the BugLens backend are:
+
+- There is no Redis
+- There is no Kafka
+- There is no RabbitMQ
+- There is no vector database
+- There is no distributed worker orchestration
+
+## Why these limitations exist
+
+The current architecture prioritizes simplicity and maintainability while supporting the current requirements of the platform.

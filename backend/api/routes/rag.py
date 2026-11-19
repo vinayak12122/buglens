@@ -4,7 +4,7 @@ from langchain_groq import ChatGroq
 from dotenv import load_dotenv
 import os
 
-from rag.service import RagService
+from rag.vector_service import VectorRagService
 from rag.schemas.question import AskRequest
 from rag.schemas.answer import AskResponse
 
@@ -13,11 +13,12 @@ load_dotenv()
 router = APIRouter(prefix="/rag")
 
 llm = ChatGroq(
-    model="llama-3.3-70b-versatile",
-    api_key=os.getenv("GROQ_KEY")
+    model="openai/gpt-oss-120b",
+    api_key=os.getenv("GROQ_KEY"),
+    temperature=0
 )
 
-rag_service = RagService(llm)
+rag_service = VectorRagService(llm)
 
 @router.post("/ask")
 async def ask(

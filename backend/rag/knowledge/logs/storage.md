@@ -1,6 +1,4 @@
-# Log Processing
-
-## Overview
+## Log Storage
 
 Log processing occurs after an event has been accepted by the ingestion system and placed into the queue.
 

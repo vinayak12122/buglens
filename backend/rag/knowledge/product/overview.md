@@ -1,3 +1,5 @@
+## Overview
+
 BugLens is a real-time error monitoring and debugging platform designed to help developers identify, track, group, and resolve application issues efficiently.
 
 The platform consists of three primary components:
