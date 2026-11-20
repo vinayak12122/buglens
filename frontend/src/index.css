@@ -246,5 +246,5 @@ body {
  }
 
  .rainbow-spinner-glow {
-   animation: smoothScale 2.5s infinite ease-in-out, rotateRainbow 4s infinite linear;
+   animation: smoothScale 2.5s infinite ease-in-out;
  }

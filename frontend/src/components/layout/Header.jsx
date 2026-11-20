@@ -55,7 +55,7 @@ const Header = () => {
                         <SunMedium
                             className={`transition-all duration-500 h-6 w-max p-1
                                 ${!isDark
-                                    ? "text-app-text rotate-0 scale-100 bg-purple-700/40 rounded-full"
+                                    ? "text-app-text rotate-0 scale-100 bg-purple-700/60 rounded-full"
                                     : "text-app-text/40 -rotate-90 scale-75"
                                 }`
                             }
@@ -63,7 +63,7 @@ const Header = () => {
                         <Moon
                             className={`transition-all duration-500 h-6 w-max p-1
                                 ${isDark
-                                    ? "text-white rotate-0 scale-100 bg-purple-700/40 rounded-full"
+                                    ? "text-white rotate-0 scale-100 bg-purple-700 rounded-full"
                                     : "text-app-text/40 rotate-90 scale-75"
                                 }`
                             }

@@ -115,12 +115,12 @@ const RagPage = ({ openRag, setOpenRag }) => {
     };
 
     return (
-        <div className='text-app-text flex flex-col h-full w-full overflow-hidden px-3 py-2 bg-app-bg'>
+        <div className='text-app-text flex flex-col h-full w-full overflow-hidden px-3 py-2 bg-app-bg border border-app-text/20'>
 
             <div className="flex-none px-4 py-2">
                 <div className="flex items-center justify-between">
-                    <h3 className="text-lg text-app-text 800"><span className='font-rogbold tracking-wider'>BugLens</span> <span className='font-semibold'>AI</span></h3>
-                    <span className="h-8 w-8 rounded-full flex items-center justify-center hover:bg-slate-800/5 duration-200 cursor-pointer"
+                    <h3 className="text-lg text-app-text 800"><span className='font-rogbold tracking-wider'>BugLens</span><span className='font-semibold'>AI</span></h3>
+                    <span className="h-8 w-8  flex items-center justify-center hover:bg-slate-800/5 duration-200 cursor-pointer"
                         onClick={() => setOpenRag(false)}
                     >
                         <X size={18} />

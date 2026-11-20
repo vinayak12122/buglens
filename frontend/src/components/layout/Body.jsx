@@ -135,7 +135,7 @@ const Body = ({ openMenu, setOpenMenu , activePage,setActivePage}) => {
               </div>
               <div className="flex gap-2">
                 <Shield className="text-purple-700" />
-                <p className="text-gray-400">99% Uptime</p>
+                <p className="text-gray-400">100% Uptime</p>
               </div>
               <div className="flex gap-2">
                 <CodeXml className="text-purple-700" />

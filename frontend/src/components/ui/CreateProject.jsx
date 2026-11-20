@@ -28,6 +28,7 @@ const CreateProject = ({ openProject, setOpenProject }) => {
         "Vue",
         "Angular",
         "Vite",
+        "Other"
     ]
 
     const validateURL = (url) => {
