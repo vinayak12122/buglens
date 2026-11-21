@@ -1,7 +1,8 @@
 from __future__ import annotations
 
-import asyncio
 import os
+import re
+import asyncio
 import threading
 
 from .tech.retriever import Hit, Retriever
@@ -23,12 +24,10 @@ class VectorRagService:
     def __init__(self, llm, k: int = 3, use_reranker: bool | None = None):
         self.llm = llm
         self.k = k
-        if use_reranker is None:
-            use_reranker = os.getenv("RAG_USE_RERANKER", "false").lower() == "true"
         self.use_reranker = use_reranker
 
         self.retriever = Retriever()
-        # self.retriever.retrieve("warm up", use_reranker=True)
+        self.retriever.retrieve("warm up", use_reranker=False)
         self._lock = threading.Lock()
 
     def _retrieve(self, question: str) -> list[Hit]:
@@ -48,6 +47,23 @@ class VectorRagService:
             ("system", f"{SYSTEM_PROMPT}\n\nContext:\n{build_context(hits)}"),
             ("human", question),
         ]
+
+        buffer = ""
         async for chunk in self.llm.astream(messages):
-            if chunk.content:
-                yield chunk.content
+            token = chunk.content
+            if not token:
+                continue
+
+            ends_sentence = re.search(r"(?<!\d)[.!?]$", buffer) is not None
+            if buffer and ends_sentence and token[0] in " \n":
+                yield buffer
+                buffer = ""
+
+            buffer += token
+
+            if "\n" in token:
+                yield buffer
+                buffer = ""
+
+        if buffer:
+            yield buffer

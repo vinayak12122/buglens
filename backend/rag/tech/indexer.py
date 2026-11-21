@@ -5,7 +5,6 @@ import uuid
 from pathlib import Path
 from qdrant_client import QdrantClient
 from qdrant_client.models import Distance,PointStruct,VectorParams
-from sentence_transformers import SentenceTransformer
 
 try:
     from .chunker import chunk_directory
@@ -13,21 +12,18 @@ except ImportError:
     from chunker import chunk_directory
 
 try:
-    from .config import EMBED_MODEL, COLLECTION, KNOWLEDGE_DIR, QDRANT_PATH
+    from .config import EMBED_MODEL, COLLECTION, KNOWLEDGE_DIR, QDRANT_PATH,FASTEMBED_CACHE
 except ImportError:
-    from config import EMBED_MODEL, COLLECTION, KNOWLEDGE_DIR, QDRANT_PATH
+    from config import EMBED_MODEL, COLLECTION, KNOWLEDGE_DIR, QDRANT_PATH,FASTEMBED_CACHE
 
 def build_index() -> None:
     chunks = chunk_directory(KNOWLEDGE_DIR)
     print(f"Chunked: {len(chunks)} chunks")
-    model = SentenceTransformer(EMBED_MODEL,device="cpu")
+
+    from fastembed import TextEmbedding
+    model = TextEmbedding(model_name=EMBED_MODEL,cache_dir=FASTEMBED_CACHE)
     t0 = time.perf_counter()
-    vectors = model.encode(
-        [c.embed_text for c in chunks],
-        batch_size=32,
-        normalize_embeddings=True,
-        show_progress_bar=True,
-    )
+    vectors = list(model.embed([c.embed_text for c in chunks], batch_size=32))
     print(f"Embedded in {time.perf_counter() - t0:.1f}s")
 
     client = QdrantClient(path=str(QDRANT_PATH))
@@ -37,7 +33,7 @@ def build_index() -> None:
 
     client.create_collection(
         collection_name=COLLECTION,
-        vectors_config=VectorParams(size=vectors.shape[1],distance=Distance.COSINE),
+        vectors_config=VectorParams(size=len(vectors[0]),distance=Distance.COSINE),
     )
 
     points = [

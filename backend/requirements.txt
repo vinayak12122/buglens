@@ -19,6 +19,5 @@ langchain-groq==1.1.2
 langchain-core==1.4.0
 
 --extra-index-url https://download.pytorch.org/whl/cpu
-torch>=2.2
-sentence-transformers>=3.0.0 
-qdrant-client>=1.10.0     
+fastembed>=0.4.0
+qdrant-client>=1.10.0

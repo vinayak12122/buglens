@@ -1,12 +1,10 @@
 
-import asyncio
-import os
-import threading
-
-from fastapi import APIRouter
+from fastapi import APIRouter, Request
 from fastapi.responses import StreamingResponse
 from langchain_groq import ChatGroq
 from dotenv import load_dotenv
+import os
+import json
 
 from rag.vector_service import VectorRagService
 from rag.schemas.question import AskRequest
@@ -21,34 +19,16 @@ llm = ChatGroq(
     temperature=0
 )
 
-rag_service = None
-rag_lock = threading.Lock()
-
-def get_rag_service():
-    global rag_service
-
-    if rag_service is None:
-        with rag_lock:
-            if rag_service is None:
-                rag_service = VectorRagService(
-                    llm,
-                    k=3,
-                    use_reranker=False
-                )
-
-    return rag_service
-
+def initialize_rag():
+    return VectorRagService(llm, k=3, use_reranker=False)
 
 @router.post("/ask")
-async def ask(request: AskRequest):
-    service = await asyncio.to_thread(get_rag_service)
+async def ask(request: AskRequest, req: Request):
+    service = req.app.state.rag_service
 
     async def event_stream():
         async for chunk in service.stream_answer(request.question):
             if chunk:
-                yield f"data: {chunk}\n\n"
+                yield f"data: {json.dumps(chunk)}\n\n"
 
-    return StreamingResponse(
-        event_stream(),
-        media_type="text/event-stream"
-    )
+    return StreamingResponse(event_stream(), media_type="text/event-stream")

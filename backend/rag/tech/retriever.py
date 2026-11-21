@@ -4,12 +4,12 @@ import time
 from dataclasses import dataclass
 from qdrant_client import QdrantClient
 try:
-    from .config import COLLECTION, EMBED_MODEL, QDRANT_PATH
+    from .config import COLLECTION, EMBED_MODEL, QDRANT_PATH, FASTEMBED_CACHE
 except ImportError:
-    from config import COLLECTION, EMBED_MODEL, QDRANT_PATH
+    from config import COLLECTION, EMBED_MODEL, QDRANT_PATH, FASTEMBED_CACHE
 
 QUERY_PREFIX = "Represent this sentence for searching relevant passages: "
-RERANK_MODEL = "cross-encoder/ms-marco-MiniLM-L-6-v2"
+RERANK_MODEL = "Xenova/ms-marco-MiniLM-L-6-v2"
 
 @dataclass
 class Hit:
@@ -21,14 +21,15 @@ class Hit:
 
 class Retriever:
     def __init__(self):
-        self.embedder = SentenceTransformer(EMBED_MODEL, device="cpu")
+        from fastembed import TextEmbedding
+        self.embedder = TextEmbedding(model_name=EMBED_MODEL, cache_dir=FASTEMBED_CACHE)
         self.reranker = None
-        self.client = QdrantClient(path=QDRANT_PATH)
+        self.client = QdrantClient(path=str(QDRANT_PATH))
 
     def _get_reranker(self):
         if self.reranker is None:
-            from sentence_transformers import CrossEncoder
-            self.reranker = CrossEncoder(RERANK_MODEL, device="cpu")
+            from fastembed.rerank.cross_encoder import TextCrossEncoder
+            self.reranker = TextCrossEncoder(model_name=RERANK_MODEL, cache_dir=FASTEMBED_CACHE)
         return self.reranker
 
     def retrieve(self, query: str, k: int = 3,
@@ -38,10 +39,7 @@ class Retriever:
         timings = {}
         t0 = time.perf_counter()
 
-        qvec = self.embedder.encode(
-            QUERY_PREFIX + query,
-            normalize_embeddings=True
-        ).tolist()
+        qvec = next(iter(self.embedder.embed([QUERY_PREFIX + query]))).tolist()
 
         timings["embed_ms"] = (time.perf_counter() - t0) * 1000
         n_fetch = candidates if use_reranker else k
@@ -68,8 +66,8 @@ class Retriever:
         if use_reranker and hits:
             t0 = time.perf_counter()
             reranker = self._get_reranker()
-            pairs = [(query, f"{h.header_path}\n{h.text}") for h in hits]
-            scores = reranker.predict(pairs)
+            docs = [f"{h.header_path}\n{h.text}" for h in hits]
+            scores = list(reranker.rerank(query, docs))
 
             for h, s in zip(hits, scores):
                 h.score = float(s)
