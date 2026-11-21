@@ -146,7 +146,7 @@ const RagPage = ({ openRag, setOpenRag }) => {
                                         </>
                                     )}
                                     <div
-                                        className={`rounded-2xl p-3 text-sm max-w-[90%] leading-relaxed overflow-x-auto ${msg.sender === "user"
+                                        className={`rounded-2xl p-3 text-sm max-w-full leading-relaxed overflow-x-auto ${msg.sender === "user"
                                             ? "bg-mauve-400/30 dark:bg-mauve-700/50 text-app-text rounded-tr-none border border-black/20"
                                             : "text-app-text 800  rounded-tl-none "
                                             }`}

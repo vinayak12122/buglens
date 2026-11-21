@@ -73,41 +73,30 @@ export const RagProvider = ({children}) => {
                 buffer = events.pop() || "";
 
                 for (const event of events) {
-                    const lines = event.split("\n");
-
-                    for (const line of lines) {
+                    for (const line of event.split("\n")) {
                         if (!line.startsWith("data:")) continue;
 
-                        // FIX: If it is an exact empty line match ("data:"), it is a true newline block!
-                        if (line === "data:") {
-                            aiText += "\n";
-                            continue;
+                        const payload = line.slice(5).trimStart();
+                        if (payload === "[DONE]") continue;
+
+                        let token;
+                        try{
+                            token = JSON.parse(payload)
+                        }catch{
+                            token = payload;
                         }
-
-                        // FIX: Safely extract data content. 
-                        // If it matches "data: ", remove the prefix and the single space.
-                        let token = "";
-                        if (line.startsWith("data: ")) {
-                            token = line.slice(6);
-                        } else {
-                            token = line.slice(5);
-                        }
-
-                        if (token === "[DONE]") continue;
-
-                        // Append the pure token alongside its natural trailing structural line endings
-                        aiText += token + "\n";
-
-                        syncMessages((prev) => {
-                            const copy = [...prev];
-                            copy[copy.length - 1] = {
-                                sender: "ai",
-                                text: aiText,
-                            };
-                            return copy;
-                        });
+                        
+                        aiText += token;
                     }
                 }
+                syncMessages((prev) => {
+                    const copy = [...prev];
+                    copy[copy.length - 1] = {
+                        sender: "ai",
+                        text: aiText,
+                    };
+                    return copy;
+                });
             }
         } catch (error) {
             toast(error?.message, "error");
