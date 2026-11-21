@@ -17,7 +17,7 @@ const MenuPage = () => {
   ];
 
   return (
-    <div className="flex flex-col gap-10 w-full px-8">
+    <div className="flex flex-col gap-10 w-full px-8 z-100">
       <div className='w-full flex flex-col gap-5'>
 
         {menuItems.map((item) => {

@@ -10,7 +10,7 @@ const LandingLayout = ({children}) =>{
             <Header />
             <main className='pt-15 min-h-screen'>
                 {children}
-                <div className="fixed bottom-15 sm:right-15 z-100">
+                <div className="fixed bottom-15 sm:right-15 z-10">
                     <Rag 
                     openRag={openRag}
                     setOpenRag={setOpenRag}
