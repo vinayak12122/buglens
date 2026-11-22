@@ -34,7 +34,7 @@ const ProjectDashboardPage = () => {
 
           {
             selected === "logs" &&
-            <UserLogs />
+            <UserLogs  />
           }
 
           {/* {

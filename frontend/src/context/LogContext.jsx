@@ -42,7 +42,8 @@ export const LogProvider = ({ children }) => {
         });
     };
 
-    const fetchIssues = async (projectId) => {
+
+    const fetchIssues = async (projectId, forceRefresh = false) => {
         if (!projectId) {
             toast("There is no project id", "error");
             return;
@@ -50,11 +51,14 @@ export const LogProvider = ({ children }) => {
 
         const cacheKey = `issues_${projectId}`;
 
-        const cached = getCache(cacheKey);
+        // Use cache only when forceRefresh is false
+        if (!forceRefresh) {
+            const cached = getCache(cacheKey);
 
-        if(cached){
-            setIssues(cached);
-            return
+            if (cached) {
+                setIssues(cached);
+                return;
+            }
         }
 
         setIssuesLoading(true);
@@ -65,7 +69,8 @@ export const LogProvider = ({ children }) => {
             const res = await fetch(
                 `${backend_url}/project/${fullProjectId}/issues`,
                 {
-                    credentials: "include"
+                    credentials: "include",
+                    cache: "no-store"
                 }
             );
 
@@ -73,26 +78,23 @@ export const LogProvider = ({ children }) => {
 
             if (!res.ok) {
                 toast(
-                    data.detail ||
-                    "Failed to fetch issues",
+                    data.detail || "Failed to fetch issues",
                     "error"
                 );
                 return;
             }
 
-            const normalized =
-                data.map(issue =>
-                    normalizeIssue(issue)
-                );
-
-            syncIssues(normalized);
-
-            setCache(
-                cacheKey,
-                normalized
+            const normalized = data.map(issue =>
+                normalizeIssue(issue)
             );
 
-        } catch {
+            // Replace old issues with fresh database data
+            setIssues(normalized);
+
+            // Update cache with fresh data
+            setCache(cacheKey, normalized);
+
+        } catch (error) {
             toast(
                 "Something went wrong while fetching issues",
                 "error"
@@ -101,6 +103,7 @@ export const LogProvider = ({ children }) => {
             setIssuesLoading(false);
         }
     };
+
 
     const fetchLogs = async (
         projectId,

@@ -76,8 +76,8 @@ const UserLogs = () => {
 
   }, [projectId]);
 
-  const handleSelect = (issueId,status) => {
-    updateIssueStatus(projectId,issueId,status);
+  const handleSelect = (issueId, status) => {
+    updateIssueStatus(projectId, issueId, status);
     setOpenDropdownId(null);
   }
 
@@ -100,17 +100,10 @@ const UserLogs = () => {
 
     setReload(true);
 
-    const start = Date.now();
-
     try {
-      window.location.reload();
+      await fetchIssues(projectId, true);
     } finally {
-      const elapsed = Date.now() - start;
-      const remaining = Math.max(500 - elapsed, 0);
-
-      setTimeout(() => {
-        setReload(false);
-      }, remaining);
+      setReload(false);
     }
   };
 
@@ -419,7 +412,7 @@ const UserLogs = () => {
                                 </span>
                               ))}
                             </div>
-                            <span className={`text-[9px] opacity-60 ${openDropdownId === issue.id ? "rotate-180":"rotate-0"} duration-300`}><ChevronDown size={12}/></span>
+                            <span className={`text-[9px] opacity-60 ${openDropdownId === issue.id ? "rotate-180" : "rotate-0"} duration-300`}><ChevronDown size={12} /></span>
                           </button>
 
                           {openDropdownId === issue.id && (
@@ -427,7 +420,7 @@ const UserLogs = () => {
                               {options.map((option) => (
                                 <li
                                   key={option.value}
-                                  onClick={() => handleSelect(issue.id,option.value)}
+                                  onClick={() => handleSelect(issue.id, option.value)}
                                   className={`px-2 py-1.5 cursor-pointer flex items-center gap-2 hover:bg-app-text/10 transition-colors ${issue.status === option.value ? 'bg-app-text/10 text-app-text' : ''
                                     }`}
                                 >
