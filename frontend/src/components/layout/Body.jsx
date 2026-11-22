@@ -21,7 +21,7 @@ const letters = [
   },
 ];
 
-const Body = ({ openMenu, setOpenMenu , activePage,setActivePage}) => {
+const Body = ({ openMenu, setOpenMenu , openRag,setOpenRag}) => {
 
   const navigate = useNavigate();
 
@@ -33,6 +33,7 @@ const Body = ({ openMenu, setOpenMenu , activePage,setActivePage}) => {
     fixed bg-purple-700 p-3 text-center z-100
     transition-all duration-500 ease-in-out sm:hidden overflow-hidden
     ${openMenu ? 'w-full h-full rounded-none' : 'w-14 h-14 rounded-[0px_0%_50%_0px]'}
+    ${openRag ? 'hidden' : 'block'}
   `}
       >
         <button

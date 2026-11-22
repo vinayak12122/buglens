@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useTheme } from '../../context/ThemeContext';
 import { Moon, SunMedium } from 'lucide-react';
 
-const Header = () => {
+const Header = ({openRag,setOpenRag}) => {
     const { isDark, toggleTheme } = useTheme();
     const navigate = useNavigate();
     const location = useLocation();
@@ -16,7 +16,7 @@ const Header = () => {
     ];
 
     return (
-        <header className="fixed top-0 left-0 w-full z-100 bg-app-bg border-b border-app-border backdrop-blur-md">
+        <header className={`fixed top-0 left-0 w-full z-10 bg-app-bg border-b border-app-border backdrop-blur-md`}>
             <div className="max-w-7xl mx-auto py-3 sm:px-6 px-3 flex items-center justify-between">
                 <div className='flex gap-10 items-center'>
                     <p className='text-app-text text-2xl tracking-wider font-rogbold cursor-pointer'

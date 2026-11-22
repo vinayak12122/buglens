@@ -17,6 +17,8 @@ import LiveDemo from './pages/landing/LiveDemo';
 
 const App = () => {
   const { loading, isAuthenticated } = useAuth();
+  const [openMenu, setOpenMenu] = useState(false);
+  const [openRag, setOpenRag] = useState(false);
 
   // if (loading) {
   //   return (
@@ -36,13 +38,48 @@ const App = () => {
         <Routes>
 
           <Route path="/" element={
-            isAuthenticated ? <Navigate to="/dashboard" /> : <LandingLayout><LandingPage /></LandingLayout>
+            isAuthenticated ? <Navigate to="/dashboard" /> :
+              <LandingLayout
+                openRag={openRag}
+                setOpenRag={setOpenRag}
+              >
+                <LandingPage
+                  openMenu={openMenu}
+                  setOpenMenu={setOpenMenu}
+                  openRag={openRag}
+                  setOpenRag={setOpenRag}
+                />
+              </LandingLayout>
           } />
 
-          <Route path="/page/docs" element={<LandingLayout><Docs /></LandingLayout>} />
-          <Route path="/page/features" element={<LandingLayout><Feature /></LandingLayout>} />
-          <Route path="/page/scalability" element={<LandingLayout><Scalability /></LandingLayout>} />
-          <Route path="/page/live-demo" element={<LandingLayout><LiveDemo/></LandingLayout>} />
+          <Route path="/page/docs" element={
+            <LandingLayout
+              openRag={openRag}
+              setOpenRag={setOpenRag}
+            >
+              <Docs />
+            </LandingLayout>} />
+          <Route path="/page/features" element={
+            <LandingLayout
+              openRag={openRag}
+              setOpenRag={setOpenRag}
+            >
+              <Feature />
+            </LandingLayout>} />
+          <Route path="/page/scalability" element={
+            <LandingLayout
+              openRag={openRag}
+              setOpenRag={setOpenRag}
+            >
+              <Scalability />
+            </LandingLayout>} />
+          <Route path="/page/live-demo" element={
+            <LandingLayout
+              openRag={openRag}
+              setOpenRag={setOpenRag}
+            >
+              <LiveDemo />
+            </LandingLayout>} />
 
           <Route
             path="/dashboard/:projectId"
