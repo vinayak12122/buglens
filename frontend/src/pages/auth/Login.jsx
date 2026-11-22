@@ -18,31 +18,58 @@ const Login = () => {
   const { login } = useAuth();
 
   const submitEmail = async (e) => {
-    if (email.trim() === '') {
+    const trimmedEmail = email.trim();
+
+    if (!trimmedEmail) {
       toast("Please enter email", "error");
       return;
     }
+
+    // Frontend email validation
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    if (!emailRegex.test(trimmedEmail)) {
+      toast(`Please enter a valid email address (e.g. ${trimmedEmail}@gmail.com)`, "error");
+      return;
+    }
+
     try {
-      setLoading(true)
+      setLoading(true);
+
       const res = await fetch(`${backend_url}/auth/check-email`, {
         method: 'POST',
-        headers:{'Content-Type':'application/json'},
-        body: JSON.stringify({ email }),
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email: trimmedEmail
+        }),
         credentials: 'include'
-      })
+      });
 
-      const data = await res.json()
+      const data = await res.json();
 
-      if(res.ok){
+      if (res.ok) {
         setStep(2);
-      }else{
-        toast(data.detail || "Email is not exists please signup", "error");
+      } else {
+        let errorMessage = "Email is not valid or does not exist. Please signup.";
+
+        if (typeof data.detail === "string") {
+          errorMessage = data.detail;
+        } else if (Array.isArray(data.detail)) {
+          errorMessage = data.detail
+            .map(error => error.msg)
+            .filter(Boolean)
+            .join(", ");
+        }
+
+        toast(errorMessage, "error");
       }
 
     } catch (error) {
-      toast(error.message, "error");
-    }finally{
-      setLoading(false)
+      toast(error.message || "Something went wrong", "error");
+    } finally {
+      setLoading(false);
     }
   };
 
