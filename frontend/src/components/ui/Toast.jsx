@@ -20,7 +20,7 @@ export const ToastProvider = ({children}) => {
         // Light mode (default) vs Dark mode (overrides)
         success: "bg-white text-gray-900 border-gray-300 dark:bg-black dark:text-white dark:border-gray-800",
 
-        error: "bg-red-400/60 text-red-500 border-red-200 dark:bg-red-900 dark:text-red-400 dark:border-red-800"
+        error: "bg-red-200 text-red-700 border-red-200 dark:bg-red-950 dark:text-red-400 dark:border-red-800"
     };
 
   return (
